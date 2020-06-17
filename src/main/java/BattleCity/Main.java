@@ -14,9 +14,8 @@ public class Main {
 		
 //		File in= new File("C:\\Users\\jaroo\\eclipse-workspace\\cschoolzdalnie\\src\\com\\gui2\\daneLogowania.txt");
 //		in.createNewFile();
-		PrintWriter output = new PrintWriter("C:\\Users\\jaroo\\eclipse-workspace\\cschoolzdalnie\\src\\com\\gui2\\daneLogowania.txt");
-		ImageIcon imgicon = new ImageIcon(
-				"C:\\Users\\jaroo\\eclipse-workspace\\BattleCity\\12345.png");
+//		PrintWriter output = new PrintWriter("C:\\Users\\jaroo\\eclipse-workspace\\cschoolzdalnie\\src\\com\\gui2\\daneLogowania.txt");
+		ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
 
 		
 		

@@ -33,7 +33,7 @@ public class EkranGlowny extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				JFrame window1 = new JFrame("Nowa Gra");
-				ImageIcon imgicon = new ImageIcon("C:\\Users\\jaroo\\eclipse-workspace\\BattleCity\\12345.png");
+				ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
 
 				EkranNowaGra panel = new EkranNowaGra();
 
@@ -56,7 +56,7 @@ public class EkranGlowny extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				JFrame window1 = new JFrame("Edytor Map");
-				ImageIcon imgicon = new ImageIcon("C:\\Users\\jaroo\\eclipse-workspace\\BattleCity\\12345.png");
+				ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
 
 				EkranEdytorMap panel = new EkranEdytorMap();
 
@@ -79,7 +79,7 @@ public class EkranGlowny extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				JFrame window1 = new JFrame("Highscores");
-				ImageIcon imgicon = new ImageIcon("C:\\Users\\jaroo\\eclipse-workspace\\BattleCity\\12345.png");
+				ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
 
 				EkranNajlepszeWyniki panel = new EkranNajlepszeWyniki();
 
