@@ -111,10 +111,10 @@ public class EkranGlowny extends JPanel {
 		
 		
 //		input.close();
-//		JLabel bg=new JLabel(new ImageIcon("C:\\Users\\jaroo\\eclipse-workspace\\BattleCity\\Battle_City.jpg"));
-//        bg.setOpaque(true);
-//        bg.setBounds(0,0,550,650);
-//        add(bg);
+		JLabel bg=new JLabel(new ImageIcon("src\\main\\resources\\Battle_City.jpg"));
+        bg.setOpaque(true);
+        bg.setBounds(0,0,550,650);
+        add(bg);
 	}
 
 	@Override
