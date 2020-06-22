@@ -1,59 +1,76 @@
 package BattleCity;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class EkranEdytorMap extends JPanel {
-	public EkranEdytorMap() {
-		setLayout(null);
+//import BattleCity.Sound.Music;
+//import BattleCity.Sound.SoundEffect;
 
-		JLabel label = new JLabel("Edytor Map");
-		label.setBounds(220, 50, 350, 60);
-		add(label);
-		JButton button = new JButton("wróć");
-		button.setBounds(220, 600, 120, 30);
-		button.addActionListener(new ActionListener() {
+public class EkranEdytorMap {
+	
+	JFrame window;
+	Container con;
+	JPanel buttonPanel;
+	JButton buttonWroc, buttonMuzyka;
+	String clickSound, backgroundMusic, muzykaOnOff;
+//	SoundEffect se = new SoundEffect();
+//	Music mu = new Music();
+	
+	public EkranEdytorMap(){
+	JLabel bg = new JLabel(new ImageIcon("src\\main\\resources\\Battle_City.jpg"));
+	bg.setOpaque(true);
+	bg.setBounds(0, 0, 800, 600);
+	ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-// odwołanie do metody zamykającej bierzące okno i wracającej do ekranu głównego
+	window = new JFrame("Nowa Gra");
+	window.setSize(800, 600);
+	window.setLocation(300, 50);
+	window.setIconImage(imgicon.getImage());
+	window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	window.setResizable(false);
+	window.getContentPane().add(bg);
 
-			}
+	window.setLayout(null);
+	con = window.getContentPane();
 
-		});
-		add(button);
+	buttonPanel = new JPanel();
+	buttonPanel.setBounds(300, 400, 200, 100);
+	buttonPanel.setBackground(Color.black);
+	con.add(buttonPanel);
 
-		Color tlo = new Color(0, 0, 0);
-		setBackground(tlo);
 
-		Font font = new Font("Arial", Font.BOLD, 26);
-		for (Component comp : getComponents()) {
-			if (comp instanceof JLabel) {
-				((JLabel) comp).setFont(font);
-				((JLabel) comp).setForeground(Color.WHITE);
-			} else if (comp instanceof JButton) {
-				((JButton) comp).setFont(font);
+	buttonWroc = new JButton("Powrot");
+	buttonWroc.setFocusPainted(true);
+	buttonWroc.setActionCommand("soundB");
+	buttonPanel.add(buttonWroc);
+	buttonWroc.addActionListener(new ActionListener() {
 
-			}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+//			new EkranMapyStandardowe();
+			window.setVisible(false);
 		}
+	});
+	
+	buttonMuzyka = new JButton("Music");
+	buttonMuzyka.setFocusPainted(false);
+	buttonMuzyka.setActionCommand("musicB");
+	buttonMuzyka.setBounds(640, 500, 100, 30);
+	con.add(buttonMuzyka);
 
-//        JLabel bg=new JLabel(new ImageIcon("C:\\Users\\jaroo\\eclipse-workspace\\cschoolzdalnie\\src\\com\\gui3\\tlo.jpg"));
-//        bg.setOpaque(true);
-//        bg.setBounds(0,0,550,650);
-//        add(bg);
-	}
+	clickSound = "src/main/resources/buttonsound.wav";
+	backgroundMusic = "src/main/resources/muzykawtle.wav";
+	muzykaOnOff = "off";
 
-	@Override
-	public Dimension getPreferredSize() {
-		return new Dimension(550, 650);
-	}
+	window.setVisible(true);
 
+}
 }

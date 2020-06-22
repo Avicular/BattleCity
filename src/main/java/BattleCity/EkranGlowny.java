@@ -1,124 +1,192 @@
+
 package BattleCity;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-public class EkranGlowny extends JPanel {
+public class EkranGlowny {
 
-	public EkranGlowny() throws IOException {
-		setLayout(null);
+	JFrame window;
+	Container con;
+	JPanel buttonPanel;
+	JButton buttonNowaGra, buttonNajlepszeWyniki, buttonEdytorMap, buttonMuzyka;
+	String clickSound, backgroundMusic, muzykaOnOff;
+	SoundEffect se = new SoundEffect();
+	Music mu = new Music();
 
-		JButton button1 = new JButton("nowa gra");
-		button1.setBounds(120, 150, 320, 30);
-		button1.addActionListener(new ActionListener() {
+	public EkranGlowny() {
+		JLabel bg = new JLabel(new ImageIcon("src\\main\\resources\\Battle_City.jpg"));
+		bg.setOpaque(true);
+		bg.setBounds(0, 0, 800, 600);
+		ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		window = new JFrame("Battle City");
+		window.setSize(800, 600);
+		window.setLocation(300, 50);
+		window.setIconImage(imgicon.getImage());
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setResizable(false);
+		window.getContentPane().add(bg);
 
-				JFrame window1 = new JFrame("Nowa Gra");
-				ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
+		window.setLayout(null);
+		con = window.getContentPane();
 
-				EkranNowaGra panel = new EkranNowaGra();
+		buttonPanel = new JPanel();
+		buttonPanel.setBounds(340, 350, 100, 200);
+		buttonPanel.setBackground(Color.black);
+		con.add(buttonPanel);
 
-				window1.add(panel);
-				window1.setIconImage(imgicon.getImage());
-				window1.setLocation(100, 50);
-				window1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				window1.setVisible(true);
-				window1.pack();
-
-			}
-
-		});
-		add(button1);
-		JButton button2 = new JButton("edytor map");
-		button2.setBounds(120, 200, 320, 30);
-		button2.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				JFrame window1 = new JFrame("Edytor Map");
-				ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
-
-				EkranEdytorMap panel = new EkranEdytorMap();
-
-				window1.add(panel);
-				window1.setIconImage(imgicon.getImage());
-				window1.setLocation(100, 50);
-				window1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				window1.setVisible(true);
-				window1.pack();
-
-			}
-
-		});
-		add(button2);
-		JButton button3 = new JButton("Najlepsze Wyniki");
-		button3.setBounds(120, 250, 320, 30);
-		button3.addActionListener(new ActionListener() {
+		buttonNowaGra = new JButton("Nowa Gra");
+		buttonNowaGra.setFocusPainted(true);
+		buttonNowaGra.setActionCommand("soundB");
+		buttonPanel.add(buttonNowaGra);
+		buttonNowaGra.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				se.setFile(clickSound);
+				se.play();
 
-				JFrame window1 = new JFrame("Highscores");
-				ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
-
-				EkranNajlepszeWyniki panel = new EkranNajlepszeWyniki();
-
-				window1.add(panel);
-				window1.setIconImage(imgicon.getImage());
-				window1.setLocation(100, 50);
-				window1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				window1.setVisible(true);
-				window1.pack();
+				new EkranNowaGra();
 
 			}
-
 		});
-		add(button3);
+		
+		buttonEdytorMap = new JButton("Edytor Map");
+		buttonEdytorMap.setFocusPainted(true);
+		buttonEdytorMap.setActionCommand("soundB");
+		buttonPanel.add(buttonEdytorMap);
+		buttonEdytorMap.addActionListener(new ActionListener() {
 
-		Color tlo = new Color(0, 0, 0);
-		setBackground(tlo);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				se.setFile(clickSound);
+				se.play();
 
-		Font font = new Font("Arial", Font.BOLD, 18);
-		for (Component comp : getComponents()) {
-			if (comp instanceof JLabel) {
-				((JLabel) comp).setFont(font);
-			} else if (comp instanceof JButton) {
-				((JButton) comp).setFont(font);
-			} else if (comp instanceof JTextField) {
-				((JTextField) comp).setFont(font);
+				new EkranEdytorMap();
+
+			}
+		});
+		
+		buttonNajlepszeWyniki = new JButton("Najlepsze Wyniki");
+		buttonNajlepszeWyniki.setFocusPainted(true);
+		buttonNajlepszeWyniki.setActionCommand("soundB");
+		buttonPanel.add(buttonNajlepszeWyniki);
+		buttonNajlepszeWyniki.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				se.setFile(clickSound);
+				se.play();
+
+				new EkranNajlepszeWyniki();
+
+			}
+		});
+
+		buttonMuzyka = new JButton("Music");
+		buttonMuzyka.setFocusPainted(false);
+//		buttonMuzyka.addActionListener(bHandler);
+		buttonMuzyka.setActionCommand("musicB");
+		buttonMuzyka.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (muzykaOnOff.equals("off")) {
+					mu.setFile(backgroundMusic);
+					mu.play();
+					mu.loop();
+					muzykaOnOff = "on";
+					buttonMuzyka.setText("Music On");
+				} else if (muzykaOnOff.equals("on")) {
+					mu.stop();
+					muzykaOnOff = "off";
+					buttonMuzyka.setText("Music Off");
+
+				}
+			}
+		});
+		buttonMuzyka.setBounds(640, 500, 100, 30);
+		con.add(buttonMuzyka);
+
+		clickSound = "src/main/resources/buttonsound.wav";
+		backgroundMusic = "src/main/resources/muzykawtle.wav";
+		muzykaOnOff = "off";
+
+		window.setVisible(true);
+		mu.setFile(backgroundMusic);
+		mu.play();
+		mu.loop();
+		muzykaOnOff = "on";
+		buttonMuzyka.setText("Music On");
+	}
+
+	public class SoundEffect {
+
+		Clip clip;
+
+		public void setFile(String soundFileName) {
+
+			try {
+				File file = new File(soundFileName);
+				AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+				clip = AudioSystem.getClip();
+				clip.open(sound);
+			} catch (Exception e) {
+
 			}
 		}
-		
-		
-//		input.close();
-		JLabel bg=new JLabel(new ImageIcon("src\\main\\resources\\Battle_City.jpg"));
-        bg.setOpaque(true);
-        bg.setBounds(0,0,550,650);
-        add(bg);
+
+		public void play() {
+
+			clip.setFramePosition(0);
+			clip.start();
+		}
+
 	}
 
-	@Override
-	public Dimension getPreferredSize() {
-		return new Dimension(550, 450);
+	public class Music {
+
+		Clip clip;
+
+		public void setFile(String soundFileName) {
+
+			try {
+				File file = new File(soundFileName);
+				AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+				clip = AudioSystem.getClip();
+				clip.open(sound);
+			} catch (Exception e) {
+
+			}
+		}
+
+		public void play() {
+
+			clip.setFramePosition(0);
+			clip.start();
+		}
+
+		public void loop() {
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+		}
+
+		public void stop() {
+			clip.stop();
+			clip.close();
+		}
 	}
+
 }
