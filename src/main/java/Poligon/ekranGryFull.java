@@ -11,12 +11,12 @@ public class ekranGryFull extends JPanel {
 	public ekranGryFull () {
 		
 		ekranGry game = new ekranGry();
-		game.setPreferredSize(new Dimension(500,500));
+		game.setPreferredSize(new Dimension(800,450));
 		add(game);
 		
 		ekranGryMenu menu = new ekranGryMenu();
-		menu.setPreferredSize(new Dimension(500,300));
-		menu.setLocation(0, 500);
+		menu.setPreferredSize(new Dimension(800,150));
+		menu.setLocation(0, 450);
 		add(menu);
 	}
 	

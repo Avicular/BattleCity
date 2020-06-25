@@ -1,5 +1,6 @@
 package Poligon;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -14,10 +15,12 @@ public class Main {
 		JFrame okno = new JFrame();
 		
 		ekranGryFull gra1 = new ekranGryFull();
+		okno.setLayout(new BorderLayout());
 		gra1.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));		
 		okno.getContentPane().add(gra1);
 		okno.setTitle("Okno Gry");		
-		okno.setPreferredSize(new Dimension(500,800));
+		okno.setPreferredSize(new Dimension(816,600));
+		
 		okno.setLocation(2000, 50);
 		okno.setVisible(true);
 		okno.pack();
@@ -25,14 +28,3 @@ public class Main {
 		
 	}
 }
-
-//loadTank tank = new loadTank(0,0);
-//loadObstacles obstacles = new loadObstacles();
-//JFrame okno = new JFrame();
-//okno.setTitle("Poligon");
-//okno.setPreferredSize(new Dimension(500,500));
-//okno.setVisible(true);
-//okno.pack();		
-//okno.getContentPane().add(tank);
-//okno.getContentPane().add(obstacles);
-//tank.requestFocusInWindow();
