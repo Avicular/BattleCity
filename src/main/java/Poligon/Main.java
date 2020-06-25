@@ -19,7 +19,7 @@ public class Main {
 		gra1.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));		
 		okno.getContentPane().add(gra1);
 		okno.setTitle("Okno Gry");		
-		okno.setPreferredSize(new Dimension(816,600));
+		okno.setPreferredSize(new Dimension(816,639));
 		
 		okno.setLocation(2000, 50);
 		okno.setVisible(true);
