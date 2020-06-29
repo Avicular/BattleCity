@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -16,8 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-public class ekranGryFull extends JPanel {
+import Poligon.ekranGryFull.ekranGry.loadTank;
 
+public class ekranGryFull extends JPanel {
 	
 	public ekranGryFull () {
 		
@@ -126,24 +129,26 @@ public class ekranGryFull extends JPanel {
 	
 	public class ekranGry extends JPanel{
 		
+		String blueTank = "src/main/resources/basic_tank_icon.png";
+		String grayTank = "src/main/resources/gray_tank_icon.png";
+		String redTank = "src/main/resources/red_tank_icon.png";
 		
-		loadTank tank1 = new loadTank(0, 0);
+		loadTank tank1 = new loadTank(0, 400, grayTank);
+		loadTank tank2 = new loadTank(750, 400, redTank);
+		
 		public double angle = - Math.PI/2;
 		public long distance1;
-		String distance;
+		public long distance2;
 		
 		public boolean isBulletproof(boolean bulletproof) {
 			return bulletproof;
 		}
 		
-		public String getDistance() {
-			return ""+distance1;
-		}
-		
 		public ekranGry() {
 			setLayout(null);			
 			add(tank1);
-		
+			add(tank2);
+			setFocusable(true);
 			for (int a=1;a<=8;a++) {
 				if (a%2 != 0)
 				for (int i=1;i<=14;i++) {
@@ -151,75 +156,11 @@ public class ekranGryFull extends JPanel {
 				}
 			}
 			
-			Action actionW = new AbstractAction() {
-				public void actionPerformed(ActionEvent a) {
-					if (angle != -(Math.PI/2)) {
-						angle = -Math.PI/2;
-						tank1.repaint();
-					}
-					tank1.setLocation(tank1.getX(),tank1.getY()-2);
-					distance1++;
-					System.out.println("Ruch o pixel w górê.");
-				}
-			};
-			
-			Action actionS = new AbstractAction() {
-				public void actionPerformed(ActionEvent a) {
-					if (angle != (Math.PI/2)) {
-						angle = Math.PI/2;
-						tank1.repaint();
-					}
-					tank1.setLocation(tank1.getX(),tank1.getY()+2);
-					distance1++;
-					System.out.println("Ruch o pixel w dó³.");
-				}
-			};
-			
-			Action actionA = new AbstractAction() {
-				public void actionPerformed(ActionEvent a) {
-					if (angle != Math.PI) {
-						angle = Math.PI;
-						tank1.repaint();
-					}
-					tank1.setLocation(tank1.getX()-2,tank1.getY());
-					distance1++;
-					System.out.println("Ruch o pixel w lewo.");
-				}
-			};
-			
-			Action actionD = new AbstractAction() {
-				public void actionPerformed(ActionEvent a) {
-					if (angle != 0) {
-						angle = 0;
-						tank1.repaint();
-					}
-					tank1.setLocation(tank1.getX()+2,tank1.getY());
-					distance1++;
-					System.out.println("Ruch o pixel w prawo.");
-				}
-			};
-			
-			Action actionSPACE = new AbstractAction() {
-				public void actionPerformed(ActionEvent a) {
-					System.out.println(distance1 + " pixeli");				
-				}
-			};
-			
-			tank1.getInputMap().put(KeyStroke.getKeyStroke("W"), "actionW");
-			tank1.getActionMap().put("actionW", actionW);
-			tank1.requestFocusInWindow();
-			tank1.getInputMap().put(KeyStroke.getKeyStroke("S"), "actionS");
-			tank1.getActionMap().put("actionS", actionS);
-			tank1.requestFocusInWindow();
-			tank1.getInputMap().put(KeyStroke.getKeyStroke("A"), "actionA");
-			tank1.getActionMap().put("actionA", actionA);
-			tank1.requestFocusInWindow();
-			tank1.getInputMap().put(KeyStroke.getKeyStroke("D"), "actionD");
-			tank1.getActionMap().put("actionD", actionD);
-			tank1.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "actionSPACE");
-			tank1.getActionMap().put("actionSPACE", actionSPACE);
-			tank1.requestFocusInWindow();
-			
+			playerOneMomement p1 = new playerOneMomement();
+			playerTwoMovement p2 = new playerTwoMovement();
+			addKeyListener(p1);
+			addKeyListener(p2);
+			setFocusTraversalKeysEnabled(false);
 			setBackground(Color.DARK_GRAY);
 			
 		}
@@ -228,12 +169,13 @@ public class ekranGryFull extends JPanel {
 			
 			int x;
 			int y;
+			String tankVersion;
 			
-		    public loadTank(int x, int y) {
+		    public loadTank(int x, int y, String tankVersion) {
 		    
 		    setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
 		    setBounds(this.x=x, this.y=y, 50, 50);
-		    ImageIcon tankIcon = new ImageIcon("src/main/resources/basic_tank_icon.png");
+		    ImageIcon tankIcon = new ImageIcon(this.tankVersion=tankVersion);
 		    add(new JLabel(tankIcon) {
 		    	@Override
 	            protected void paintComponent(Graphics g) {
@@ -243,8 +185,9 @@ public class ekranGryFull extends JPanel {
 	            }
 		    });
 		    
-		    System.out.println("dodano czo³g dla gracza nr 1");
-		    System.out.println("czo³g resistance: " + isBulletproof(false) );
+		    System.out.println("player's tank added");
+		    System.out.println("tank bullet resistance: " + isBulletproof(false) );
+		    System.out.println("tank hitpoints:3");
 		    }
 		}
 		
@@ -259,9 +202,140 @@ public class ekranGryFull extends JPanel {
 		    setBounds(this.x=x, this.y=y, 50, 50);
 		    setBackground(Color.BLACK);
 		    add(new JLabel(new ImageIcon("src/main/resources/wall_icon.png")));
-		    //System.out.println("dodano mur");
-		    //System.out.println("mur resistance: " + isBulletproof(false) );
 		    }
 		}
+		
+		public class playerOneMomement implements KeyListener{
+
+			
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+
+				if(e.getKeyCode()== KeyEvent.VK_W) {
+						if (angle != -(Math.PI/2)) {
+							angle = -Math.PI/2;
+							tank1.repaint();
+						}
+						tank1.setLocation(tank1.getX(),tank1.getY()-2);
+						distance1++;
+						System.out.println("Ruch o pixel w górê.");
+					}
+				
+				if(e.getKeyCode()== KeyEvent.VK_S) {
+						if (angle != (Math.PI/2)) {
+							angle = Math.PI/2;
+							tank1.repaint();
+						}
+						tank1.setLocation(tank1.getX(),tank1.getY()+2);
+						distance1++;
+						System.out.println("Ruch o pixel w dó³.");
+					}
+				
+				if(e.getKeyCode()== KeyEvent.VK_A) {
+						if (angle != Math.PI) {
+							angle = Math.PI;
+							tank1.repaint();
+						}
+						tank1.setLocation(tank1.getX()-2,tank1.getY());
+						distance1++;
+						System.out.println("Ruch o pixel w lewo.");
+					}
+				
+				if(e.getKeyCode()== KeyEvent.VK_D) {
+						if (angle != 0) {
+							angle = 0;
+							tank1.repaint();
+						}
+						tank1.setLocation(tank1.getX()+2,tank1.getY());
+						distance1++;
+						System.out.println("Ruch o pixel w prawo.");
+					}
+				
+				
+				if(e.getKeyCode()== KeyEvent.VK_SPACE) {
+						System.out.println("Player's 1 tank distance:" + distance1 + " pixels.");				
+					}
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		}
+		
+		public class playerTwoMovement implements KeyListener {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()== KeyEvent.VK_UP) {
+						if (angle != -(Math.PI/2)) {
+							angle = -Math.PI/2;
+							tank2.repaint();
+						}
+						tank2.setLocation(tank2.getX(),tank2.getY()-2);
+						distance2++;
+						System.out.println("Ruch o pixel w górê.");
+					}
+				
+				if(e.getKeyCode()== KeyEvent.VK_DOWN) {
+						if (angle != (Math.PI/2)) {
+							angle = Math.PI/2;
+							tank2.repaint();
+						}
+						tank2.setLocation(tank2.getX(),tank2.getY()+2);
+						distance2++;
+						System.out.println("Ruch o pixel w dó³.");
+					}
+				
+				if(e.getKeyCode()== KeyEvent.VK_LEFT) {
+						if (angle != Math.PI) {
+							angle = Math.PI;
+							tank2.repaint();
+						}
+						tank2.setLocation(tank2.getX()-2,tank2.getY());
+						distance2++;
+						System.out.println("Ruch o pixel w lewo.");
+					}
+				
+				if(e.getKeyCode()== KeyEvent.VK_RIGHT) {
+						if (angle != 0) {
+							angle = 0;
+							tank2.repaint();
+						}
+						tank2.setLocation(tank2.getX()+2,tank2.getY());
+						distance2++;
+						System.out.println("Ruch o pixel w prawo.");
+					}
+				
+				if(e.getKeyCode()== KeyEvent.VK_ENTER) {
+						System.out.println("Player's 2 tank distance:" + distance2 + " pixels.");				
+					}	
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		}
+		
 	}
 }
