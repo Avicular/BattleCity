@@ -9,16 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import javax.swing.AbstractAction;
-import javax.swing.Action;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
-
-import Poligon.ekranGryFull.ekranGry.loadTank;
 
 public class ekranGryFull extends JPanel {
 	
@@ -136,6 +131,8 @@ public class ekranGryFull extends JPanel {
 		loadTank tank1 = new loadTank(0, 400, grayTank);
 		loadTank tank2 = new loadTank(750, 400, redTank);
 		
+		ArrayList<loadWall> walls = new ArrayList<loadWall>();
+		
 		public double angle = - Math.PI/2;
 		public long distance1;
 		public long distance2;
@@ -144,23 +141,37 @@ public class ekranGryFull extends JPanel {
 			return bulletproof;
 		}
 		
-		public ekranGry() {
+		
+		public ekranGry()  {
 			setLayout(null);			
 			add(tank1);
 			add(tank2);
 			setFocusable(true);
-			for (int a=1;a<=8;a++) {
-				if (a%2 != 0)
-				for (int i=1;i<=14;i++) {
-					add(new loadWall(i*50,a*50));
-				}
+			
+// add single obstacle			
+//			walls.add(new loadWall(50,350));
+//			add(walls.get(0));
+			
+			for (int i=0;i<75;i++) {
+				int x = (int)(Math.random()*16)*50;
+				int y = (int)(Math.random()*8)*50;
+			walls.add(new loadWall(x,y));
 			}
+			for (int i=0;i<walls.size();i++)
+				add(walls.get(i));
+			
+// other method to generate obstacles			
+//			for (int a=1;a<=8;a++) {
+//				if (a%2 != 0)
+//				for (int i=1;i<=14;i++) {
+//					add(new loadWall(i*50,a*50));
+//				}
+//			}
 			
 			playerOneMomement p1 = new playerOneMomement();
 			playerTwoMovement p2 = new playerTwoMovement();
 			addKeyListener(p1);
 			addKeyListener(p2);
-			setFocusTraversalKeysEnabled(false);
 			setBackground(Color.DARK_GRAY);
 			
 		}
@@ -223,6 +234,15 @@ public class ekranGryFull extends JPanel {
 							angle = -Math.PI/2;
 							tank1.repaint();
 						}
+						int counter = 0;
+						for (int i=0;i<=49;i++) {
+						String objectClass = getComponentAt(tank1.getX()+i,tank1.getY()-1).getClass().getName();
+						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						counter++;
+						}
+						if (counter>0)
+						tank1.setLocation(tank1.getX(),tank1.getY());
+						else
 						tank1.setLocation(tank1.getX(),tank1.getY()-2);
 						distance1++;
 						System.out.println("Ruch o pixel w górê.");
@@ -233,6 +253,15 @@ public class ekranGryFull extends JPanel {
 							angle = Math.PI/2;
 							tank1.repaint();
 						}
+						int counter = 0;
+						for (int i=0;i<=49;i++) {
+						String objectClass = getComponentAt(tank1.getX()+i,tank1.getY()+51).getClass().getName();
+						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						counter++;
+						}
+						if (counter>0)
+						tank1.setLocation(tank1.getX(),tank1.getY());
+						else
 						tank1.setLocation(tank1.getX(),tank1.getY()+2);
 						distance1++;
 						System.out.println("Ruch o pixel w dó³.");
@@ -243,6 +272,15 @@ public class ekranGryFull extends JPanel {
 							angle = Math.PI;
 							tank1.repaint();
 						}
+						int counter = 0;
+						for (int i=0;i<=49;i++) {
+						String objectClass = getComponentAt(tank1.getX()-1,tank1.getY()+i).getClass().getName();
+						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						counter++;
+						}
+						if (counter>0)
+						tank1.setLocation(tank1.getX(),tank1.getY());
+						else
 						tank1.setLocation(tank1.getX()-2,tank1.getY());
 						distance1++;
 						System.out.println("Ruch o pixel w lewo.");
@@ -253,6 +291,15 @@ public class ekranGryFull extends JPanel {
 							angle = 0;
 							tank1.repaint();
 						}
+						int counter = 0;
+						for (int i=0;i<=49;i++) {
+						String objectClass = getComponentAt(tank1.getX()+51,tank1.getY()+i).getClass().getName();
+						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						counter++;
+						}
+						if (counter>0)
+						tank1.setLocation(tank1.getX(),tank1.getY());
+						else
 						tank1.setLocation(tank1.getX()+2,tank1.getY());
 						distance1++;
 						System.out.println("Ruch o pixel w prawo.");
@@ -260,7 +307,10 @@ public class ekranGryFull extends JPanel {
 				
 				
 				if(e.getKeyCode()== KeyEvent.VK_SPACE) {
-						System.out.println("Player's 1 tank distance:" + distance1 + " pixels.");				
+						//System.out.println("w punkcie o wspó³rzêdnych 50x50 jest mur");
+						System.out.println(tank1.getLocation());
+						System.out.println(getComponentAt(50,350).getClass().getName());
+						System.out.println("Player's 1 tank distance: " + distance1*2 + " pixels.");				
 					}
 				
 			}
@@ -288,6 +338,15 @@ public class ekranGryFull extends JPanel {
 							angle = -Math.PI/2;
 							tank2.repaint();
 						}
+						int counter = 0;
+						for (int i=0;i<=49;i++) {
+						String objectClass = getComponentAt(tank2.getX()+i,tank2.getY()-1).getClass().getName();
+						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						counter++;
+						}
+						if (counter>0)
+						tank2.setLocation(tank2.getX(),tank2.getY());
+						else
 						tank2.setLocation(tank2.getX(),tank2.getY()-2);
 						distance2++;
 						System.out.println("Ruch o pixel w górê.");
@@ -298,6 +357,15 @@ public class ekranGryFull extends JPanel {
 							angle = Math.PI/2;
 							tank2.repaint();
 						}
+						int counter = 0;
+						for (int i=0;i<=49;i++) {
+						String objectClass = getComponentAt(tank2.getX()+i,tank2.getY()+51).getClass().getName();
+						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						counter++;
+						}
+						if (counter>0)
+						tank2.setLocation(tank2.getX(),tank2.getY());
+						else
 						tank2.setLocation(tank2.getX(),tank2.getY()+2);
 						distance2++;
 						System.out.println("Ruch o pixel w dó³.");
@@ -308,6 +376,15 @@ public class ekranGryFull extends JPanel {
 							angle = Math.PI;
 							tank2.repaint();
 						}
+						int counter = 0;
+						for (int i=0;i<=49;i++) {
+						String objectClass = getComponentAt(tank2.getX()-1,tank2.getY()+i).getClass().getName();
+						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						counter++;
+						}
+						if (counter>0)
+						tank2.setLocation(tank2.getX(),tank2.getY());
+						else
 						tank2.setLocation(tank2.getX()-2,tank2.getY());
 						distance2++;
 						System.out.println("Ruch o pixel w lewo.");
@@ -318,13 +395,22 @@ public class ekranGryFull extends JPanel {
 							angle = 0;
 							tank2.repaint();
 						}
+						int counter = 0;
+						for (int i=0;i<=49;i++) {
+						String objectClass = getComponentAt(tank2.getX()+51,tank2.getY()+i).getClass().getName();
+						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						counter++;
+						}
+						if (counter>0)
+						tank2.setLocation(tank2.getX(),tank2.getY());
+						else
 						tank2.setLocation(tank2.getX()+2,tank2.getY());
 						distance2++;
 						System.out.println("Ruch o pixel w prawo.");
 					}
 				
 				if(e.getKeyCode()== KeyEvent.VK_ENTER) {
-						System.out.println("Player's 2 tank distance:" + distance2 + " pixels.");				
+						System.out.println("Player's 2 tank distance: " + distance2*2 + " pixels.");				
 					}	
 				
 			}
