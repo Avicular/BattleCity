@@ -17,6 +17,9 @@ import javax.swing.JPanel;
 
 public class ekranGryFull extends JPanel {
 	
+	public long distance1;
+	public long distance2;
+	
 	public ekranGryFull () {
 		
 		ekranGry game = new ekranGry();
@@ -119,6 +122,9 @@ public class ekranGryFull extends JPanel {
 				
 			});
 			add(soundButton);
+			
+			
+			
 		}
 	}
 	
@@ -132,10 +138,9 @@ public class ekranGryFull extends JPanel {
 		loadTank tank2 = new loadTank(750, 400, redTank);
 		
 		ArrayList<loadWall> walls = new ArrayList<loadWall>();
+		ArrayList<loadField> fields = new ArrayList<loadField>();
 		
 		public double angle = - Math.PI/2;
-		public long distance1;
-		public long distance2;
 		
 		public boolean isBulletproof(boolean bulletproof) {
 			return bulletproof;
@@ -148,17 +153,52 @@ public class ekranGryFull extends JPanel {
 			add(tank2);
 			setFocusable(true);
 			
-// add single obstacle			
-//			walls.add(new loadWall(50,350));
-//			add(walls.get(0));
+// add specific obstacles			
+			walls.add(new loadWall(0,100));
+			walls.add(new loadWall(0,250));	
 			
-			for (int i=0;i<75;i++) {
-				int x = (int)(Math.random()*16)*50;
-				int y = (int)(Math.random()*8)*50;
-			walls.add(new loadWall(x,y));
-			}
-			for (int i=0;i<walls.size();i++)
-				add(walls.get(i));
+			walls.add(new loadWall(50,50));
+			walls.add(new loadWall(50,100));
+			walls.add(new loadWall(50,150));
+			walls.add(new loadWall(50,250));
+			walls.add(new loadWall(50,300));
+			walls.add(new loadWall(50,350));
+			
+			walls.add(new loadWall(100,50));
+			walls.add(new loadWall(100,250));
+			
+			walls.add(new loadWall(150,50));
+			walls.add(new loadWall(150,100));
+			walls.add(new loadWall(150,250));
+			walls.add(new loadWall(150,350));
+			
+			walls.add(new loadWall(200,250));
+			walls.add(new loadWall(250,250));
+			
+			walls.add(new loadWall(350,200));
+			walls.add(new loadWall(350,250));
+			
+			walls.add(new loadWall(400,250));
+			
+			for (int i=0; i<walls.size(); i++)
+			add(walls.get(i));
+
+// add specific fields
+			fields.add(new loadField(0,150));
+			fields.add(new loadField(100,350));			
+			fields.add(new loadField(200,350));
+			fields.add(new loadField(300,250));
+			for (int i=0; i<fields.size(); i++)
+			add(fields.get(i));
+			
+// random obstacle generator			
+//			for (int i=0;i<75;i++) {
+//				int x = (int)(Math.random()*16)*50;
+//				int y = (int)(Math.random()*8)*50;
+//			walls.add(new loadWall(x,y));
+//			}
+//			for (int i=0;i<walls.size();i++)
+//				add(walls.get(i));
 			
 // other method to generate obstacles			
 //			for (int a=1;a<=8;a++) {
@@ -211,14 +251,26 @@ public class ekranGryFull extends JPanel {
 		    setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
 		    new JLabel();
 		    setBounds(this.x=x, this.y=y, 50, 50);
-		    setBackground(Color.BLACK);
-		    add(new JLabel(new ImageIcon("src/main/resources/wall_icon.png")));
+		    //setBackground(Color.BLACK);
+		    add(new JLabel(new ImageIcon("src/main/resources/protection_wall_icon_50px_50px_blackborder.png")));
+		    }
+		}
+		
+		public class loadField extends JLabel {
+			
+			int x;
+			int y;
+			
+		    public loadField(int x, int y) {
+		    setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
+		    new JLabel();
+		    setBounds(this.x=x, this.y=y, 50, 50);
+		    //setBackground(Color.BLACK);
+		    add(new JLabel(new ImageIcon("src/main/resources/protection_field_icon_50px_50px.png")));
 		    }
 		}
 		
 		public class playerOneMomement implements KeyListener{
-
-			
 
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -307,10 +359,10 @@ public class ekranGryFull extends JPanel {
 				
 				
 				if(e.getKeyCode()== KeyEvent.VK_SPACE) {
-						//System.out.println("w punkcie o wspó³rzêdnych 50x50 jest mur");
 						System.out.println(tank1.getLocation());
 						System.out.println(getComponentAt(50,350).getClass().getName());
-						System.out.println("Player's 1 tank distance: " + distance1*2 + " pixels.");				
+						System.out.println("Player's 1 tank distance: " + distance1*2 + " pixels.");
+						
 					}
 				
 			}
@@ -423,5 +475,7 @@ public class ekranGryFull extends JPanel {
 			
 		}
 		
+			
 	}
+	
 }
