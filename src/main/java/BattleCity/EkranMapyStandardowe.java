@@ -11,9 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-//import BattleCity.Sound.Music;
-//import BattleCity.Sound.SoundEffect;
-
 public class EkranMapyStandardowe {
 	
 	JFrame window;
@@ -21,16 +18,16 @@ public class EkranMapyStandardowe {
 	JPanel buttonPanel;
 	JButton button1Gracz, button2Graczy, buttonWroc, buttonMuzyka;
 	String clickSound, backgroundMusic, muzykaOnOff;
-//	SoundEffect se = new SoundEffect();
-//	Music mu = new Music();
+	ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
+	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
+
 	
 	public EkranMapyStandardowe(){
-	JLabel bg = new JLabel(new ImageIcon("src\\main\\resources\\Battle_City.jpg"));
-	bg.setOpaque(true);
-	bg.setBounds(0, 0, 800, 600);
-	ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
-
-	window = new JFrame("Mapy Standardowe");
+		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
+		bg.setOpaque(true);
+		bg.setBounds(0, 0, 800, 600);
+		ImageIcon imgicon = new ImageIcon("src/main/resources/images/12345.png");
+	window = new JFrame("Standard Maps");
 	window.setSize(800, 600);
 	window.setLocation(300, 50);
 	window.setIconImage(imgicon.getImage());
@@ -42,11 +39,11 @@ public class EkranMapyStandardowe {
 	con = window.getContentPane();
 
 	buttonPanel = new JPanel();
-	buttonPanel.setBounds(340, 350, 100, 100);
+	buttonPanel.setBounds(350, 350, 100, 100);
 	buttonPanel.setBackground(Color.black);
 	con.add(buttonPanel);
 
-	button1Gracz = new JButton("1 Gracz");
+	button1Gracz = new JButton("Singleplayer");
 	button1Gracz.setFocusPainted(true);
 	button1Gracz.setActionCommand("soundB");
 	buttonPanel.add(button1Gracz);
@@ -55,11 +52,12 @@ public class EkranMapyStandardowe {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			new EkranGry1Gracz();
-
+			window.setVisible(false);
+			EkranGlowny.buttonSoundEffect();
 		}
 	});
 
-	button2Graczy = new JButton("2 Graczy");
+	button2Graczy = new JButton("Multiplayer");
 	button2Graczy.setFocusPainted(true);
 	button2Graczy.setActionCommand("soundB");
 	buttonPanel.add(button2Graczy);
@@ -68,11 +66,12 @@ public class EkranMapyStandardowe {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			new EkranGry2Graczy();
-
+			window.setVisible(false);
+			EkranGlowny.buttonSoundEffect();
 		}
 	});
 
-	buttonWroc = new JButton("Powrot");
+	buttonWroc = new JButton("Back");
 	buttonWroc.setFocusPainted(true);
 	buttonWroc.setActionCommand("soundB");
 	buttonPanel.add(buttonWroc);
@@ -80,21 +79,41 @@ public class EkranMapyStandardowe {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			EkranGlowny.buttonSoundEffect();
 			window.setVisible(false);
+			EkranNowaGra.window.setVisible(true);
 		}
 	});
 	
 	buttonMuzyka = new JButton("Music");
 	buttonMuzyka.setFocusPainted(false);
+	buttonMuzyka.setBorderPainted(false);
 	buttonMuzyka.setActionCommand("musicB");
-	buttonMuzyka.setBounds(640, 500, 100, 30);
+	buttonMuzyka.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			EkranGlowny.muzyka();
+			if (EkranGlowny.muzykaOnOff.equals("on")) {
+				ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
+				buttonMuzyka.setIcon(music);
+			} else if (EkranGlowny.muzykaOnOff.equals("off")) {
+				muzykaOnOff = "off";
+				ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
+				buttonMuzyka.setIcon(musicOff);
+
+			}
+		}
+
+	});
+	buttonMuzyka.setBounds(670, 470, 50, 50);
+	if (EkranGlowny.muzykaOnOff.equals("on")) {
+		buttonMuzyka.setIcon(music);
+	}
+	else 
+		buttonMuzyka.setIcon(musicOff);
+	buttonMuzyka.setIcon(music);
 	con.add(buttonMuzyka);
-
-	clickSound = "src/main/resources/buttonsound.wav";
-	backgroundMusic = "src/main/resources/muzykawtle.wav";
-	muzykaOnOff = "off";
-
 	window.setVisible(true);
-
-}
+	}
 }

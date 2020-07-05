@@ -92,7 +92,7 @@ public class ekranGryFull extends JPanel {
 			lifePlayerTwo.setOpaque(true);
 			add(lifePlayerTwo);
 
-			JButton backButton = new JButton("powrót");
+			JButton backButton = new JButton("powrï¿½t");
 			backButton.setBounds(350, 0, 100, 50);
 			backButton.addActionListener(new ActionListener() {
 
@@ -418,7 +418,7 @@ public class ekranGryFull extends JPanel {
 					else
 						tank1.setLocation(tank1.getX(), tank1.getY() - 2);
 					distance1++;
-					System.out.println("Ruch o pixel w górê.");
+					System.out.println("Ruch o pixel w gï¿½rï¿½.");
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_S) {
@@ -437,7 +437,7 @@ public class ekranGryFull extends JPanel {
 					else
 						tank1.setLocation(tank1.getX(), tank1.getY() + 2);
 					distance1++;
-					System.out.println("Ruch o pixel w dó³.");
+					System.out.println("Ruch o pixel w dï¿½.");
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_A) {
@@ -521,7 +521,7 @@ public class ekranGryFull extends JPanel {
 					else
 						tank2.setLocation(tank2.getX(), tank2.getY() - 2);
 					distance2++;
-					System.out.println("Ruch o pixel w górê.");
+					System.out.println("Ruch o pixel w gï¿½rï¿½.");
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -540,7 +540,7 @@ public class ekranGryFull extends JPanel {
 					else
 						tank2.setLocation(tank2.getX(), tank2.getY() + 2);
 					distance2++;
-					System.out.println("Ruch o pixel w dó³.");
+					System.out.println("Ruch o pixel w dï¿½.");
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {

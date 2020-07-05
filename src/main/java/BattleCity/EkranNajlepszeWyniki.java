@@ -11,9 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-//import BattleCity.Sound.Music;
-//import BattleCity.Sound.SoundEffect;
-
 public class EkranNajlepszeWyniki {
 	
 	JFrame window;
@@ -21,15 +18,14 @@ public class EkranNajlepszeWyniki {
 	JPanel buttonPanel, Panel;
 	JButton buttonWroc, buttonMuzyka;
 	String clickSound, backgroundMusic, muzykaOnOff;
-//	SoundEffect se = new SoundEffect();
-//	Music mu = new Music();
-	
-	public EkranNajlepszeWyniki(){
-	JLabel bg = new JLabel(new ImageIcon("src\\main\\resources\\Battle_City.jpg"));
-	bg.setOpaque(true);
-	bg.setBounds(0, 0, 800, 600);
-	ImageIcon imgicon = new ImageIcon("src/main/resources/12345.png");
 
+	public EkranNajlepszeWyniki(){
+		ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
+		ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
+		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
+		bg.setOpaque(true);
+		bg.setBounds(0, 0, 800, 600);
+		ImageIcon imgicon = new ImageIcon("src/main/resources/images/12345.png");
 //	JLabel label = new JLabel("High Scores");
 //	label.setBounds(340, 50, 350, 60);
 //	add(label);
@@ -43,7 +39,7 @@ public class EkranNajlepszeWyniki {
 //	label4.setBounds(60, 200, 450, 30);
 //	con.add(label4);
 	
-	window = new JFrame("Nowa Gra");
+	window = new JFrame("Highscores");
 	window.setSize(800, 600);
 	window.setLocation(300, 50);
 	window.setIconImage(imgicon.getImage());
@@ -60,7 +56,7 @@ public class EkranNajlepszeWyniki {
 	con.add(buttonPanel);
 
 
-	buttonWroc = new JButton("Powrot");
+	buttonWroc = new JButton("Back");
 	buttonWroc.setFocusPainted(true);
 	buttonWroc.setActionCommand("soundB");
 	buttonPanel.add(buttonWroc);
@@ -68,21 +64,41 @@ public class EkranNajlepszeWyniki {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-//			new EkranMapyStandardowe();
+			EkranGlowny.buttonSoundEffect();
 			window.setVisible(false);
+			EkranGlowny.window.setVisible(true);
 		}
 	});
 	
 	buttonMuzyka = new JButton("Music");
 	buttonMuzyka.setFocusPainted(false);
+	buttonMuzyka.setBorderPainted(false);
 	buttonMuzyka.setActionCommand("musicB");
-	buttonMuzyka.setBounds(640, 500, 100, 30);
+	buttonMuzyka.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			EkranGlowny.muzyka();
+			if (EkranGlowny.muzykaOnOff.equals("on")) {
+				ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
+				buttonMuzyka.setIcon(music);
+			} else if (EkranGlowny.muzykaOnOff.equals("off")) {
+				muzykaOnOff = "off";
+				ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
+				buttonMuzyka.setIcon(musicOff);
+
+			}
+		}
+
+	});
+	buttonMuzyka.setBounds(670, 470, 50, 50);
+	if (EkranGlowny.muzykaOnOff.equals("on")) {
+		buttonMuzyka.setIcon(music);
+	}
+	else 
+		buttonMuzyka.setIcon(musicOff);
+	buttonMuzyka.setIcon(music);
 	con.add(buttonMuzyka);
-
-	clickSound = "src/main/resources/buttonsound.wav";
-	backgroundMusic = "src/main/resources/muzykawtle.wav";
-	muzykaOnOff = "off";
-
 	window.setVisible(true);
 
 }
