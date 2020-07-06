@@ -1,0 +1,6 @@
+Poligon.ekranGryFull$ekranGry$loadField
+Poligon.ekranGryFull$ekranGry$loadWall
+Poligon.ekranGryFull$ekranGry$loadBlock
+Poligon.ekranGryFull$ekranGry$loadGrass
+Poligon.ekranGryFull$ekranGry$enemyTank
+Poligon.ekranGryFull$ekranGry$loadTank
