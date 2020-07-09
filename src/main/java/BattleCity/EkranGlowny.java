@@ -53,7 +53,7 @@ public class EkranGlowny {
 		con = window.getContentPane();
 
 		buttonPanel = new JPanel();
-		buttonPanel.setBounds(300, 350, 220, 200);
+		buttonPanel.setBounds(290, 350, 220, 200);
 		buttonPanel.setBackground(Color.black);
 		con.add(buttonPanel);
 
@@ -97,11 +97,11 @@ public class EkranGlowny {
 		});
 		
 		buttonNajlepszeWyniki = new JButton("Highscores");
-		buttonNajlepszeWyniki.setFocusPainted(false);
+		buttonNajlepszeWyniki.setFocusPainted(true);
 		buttonNajlepszeWyniki.setForeground(Color.white);
 		buttonNajlepszeWyniki.setBackground(Color.black);
 		buttonNajlepszeWyniki.setFont(font);
-		buttonNajlepszeWyniki.setBorderPainted(true);
+		buttonNajlepszeWyniki.setBorderPainted(false);
 		buttonNajlepszeWyniki.setBorder(BorderFactory.createEtchedBorder(1));
 		buttonNajlepszeWyniki.setActionCommand("soundB");
 		buttonPanel.add(buttonNajlepszeWyniki);
@@ -124,7 +124,7 @@ public class EkranGlowny {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				muzyka();
+				music();
 			}
 		});
 		
@@ -146,7 +146,7 @@ public class EkranGlowny {
 		
 	}
 
-	public static void muzyka() {
+	public static void music() {
 		if (muzykaOnOff.equals("off")) {
 			mu.setFile(backgroundMusic);
 			mu.play();

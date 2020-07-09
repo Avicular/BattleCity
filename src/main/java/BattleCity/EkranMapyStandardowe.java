@@ -2,9 +2,11 @@ package BattleCity;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,7 +22,7 @@ public class EkranMapyStandardowe {
 	String clickSound, backgroundMusic, muzykaOnOff;
 	ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
-
+	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
 	
 	public EkranMapyStandardowe(){
 		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
@@ -39,12 +41,16 @@ public class EkranMapyStandardowe {
 	con = window.getContentPane();
 
 	buttonPanel = new JPanel();
-	buttonPanel.setBounds(350, 350, 100, 100);
+	buttonPanel.setBounds(275, 350, 250, 100);
 	buttonPanel.setBackground(Color.black);
 	con.add(buttonPanel);
 
 	button1Gracz = new JButton("Singleplayer");
-	button1Gracz.setFocusPainted(true);
+	button1Gracz.setBorderPainted(false);
+	button1Gracz.setBorder(BorderFactory.createEtchedBorder(1));
+	button1Gracz.setForeground(Color.white);
+	button1Gracz.setBackground(Color.black);
+	button1Gracz.setFont(font);
 	button1Gracz.setActionCommand("soundB");
 	buttonPanel.add(button1Gracz);
 	button1Gracz.addActionListener(new ActionListener() {
@@ -58,7 +64,11 @@ public class EkranMapyStandardowe {
 	});
 
 	button2Graczy = new JButton("Multiplayer");
-	button2Graczy.setFocusPainted(true);
+	button2Graczy.setBorderPainted(false);
+	button2Graczy.setBorder(BorderFactory.createEtchedBorder(1));
+	button2Graczy.setForeground(Color.white);
+	button2Graczy.setBackground(Color.black);
+	button2Graczy.setFont(font);
 	button2Graczy.setActionCommand("soundB");
 	buttonPanel.add(button2Graczy);
 	button2Graczy.addActionListener(new ActionListener() {
@@ -72,7 +82,11 @@ public class EkranMapyStandardowe {
 	});
 
 	buttonWroc = new JButton("Back");
-	buttonWroc.setFocusPainted(true);
+	buttonWroc.setBorderPainted(false);
+	buttonWroc.setBorder(BorderFactory.createEtchedBorder(1));
+	buttonWroc.setForeground(Color.white);
+	buttonWroc.setBackground(Color.black);
+	buttonWroc.setFont(font);
 	buttonWroc.setActionCommand("soundB");
 	buttonPanel.add(buttonWroc);
 	buttonWroc.addActionListener(new ActionListener() {
@@ -93,7 +107,7 @@ public class EkranMapyStandardowe {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			EkranGlowny.muzyka();
+			EkranGlowny.music();
 			if (EkranGlowny.muzykaOnOff.equals("on")) {
 				ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 				buttonMuzyka.setIcon(music);

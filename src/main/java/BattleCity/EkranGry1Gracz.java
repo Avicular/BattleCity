@@ -2,9 +2,11 @@ package BattleCity;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,7 +22,7 @@ public class EkranGry1Gracz {
 	String clickSound, backgroundMusic, muzykaOnOff;
 	ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
-
+	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
 	public EkranGry1Gracz(){
 		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
 		bg.setOpaque(true);
@@ -42,8 +44,12 @@ public class EkranGry1Gracz {
 	buttonPanel.setBackground(Color.black);
 	con.add(buttonPanel);
 
-	buttonWroc = new JButton("Powrot");
-	buttonWroc.setFocusPainted(true);
+	buttonWroc = new JButton("Back");
+	buttonWroc.setBorderPainted(false);
+	buttonWroc.setBorder(BorderFactory.createEtchedBorder(1));
+	buttonWroc.setForeground(Color.white);
+	buttonWroc.setBackground(Color.black);
+	buttonWroc.setFont(font);
 	buttonWroc.setActionCommand("soundB");
 	buttonPanel.add(buttonWroc);
 	buttonWroc.addActionListener(new ActionListener() {
@@ -64,7 +70,7 @@ public class EkranGry1Gracz {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			EkranGlowny.muzyka();
+			EkranGlowny.music();
 			if (EkranGlowny.muzykaOnOff.equals("on")) {
 				ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 				buttonMuzyka.setIcon(music);

@@ -2,9 +2,11 @@ package BattleCity;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,7 +20,7 @@ public class EkranEdytorMap {
 	JPanel buttonPanel;
 	JButton buttonWroc, buttonMuzyka;
 	String clickSound, backgroundMusic, muzykaOnOff;
-	
+	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
 	public EkranEdytorMap(){
 		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
 		bg.setOpaque(true);
@@ -45,7 +47,11 @@ public class EkranEdytorMap {
 
 
 	buttonWroc = new JButton("Back");
-	buttonWroc.setFocusPainted(true);
+	buttonWroc.setBorderPainted(false);
+	buttonWroc.setBorder(BorderFactory.createEtchedBorder(1));
+	buttonWroc.setForeground(Color.white);
+	buttonWroc.setBackground(Color.black);
+	buttonWroc.setFont(font);
 	buttonWroc.setActionCommand("soundB");
 	buttonPanel.add(buttonWroc);
 	buttonWroc.addActionListener(new ActionListener() {
@@ -66,7 +72,7 @@ public class EkranEdytorMap {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			EkranGlowny.muzyka();
+			EkranGlowny.music();
 			if (EkranGlowny.muzykaOnOff.equals("on")) {
 				ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 				buttonMuzyka.setIcon(music);
