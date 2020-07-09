@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 public class EkranNowaGra {
 
-	static JFrame window;
+	public static JFrame window;
 	Container con;
 	JPanel buttonPanel;
 	JButton buttonMapyStandardowe, buttonMapyCustomowe, buttonWroc, buttonMuzyka;
@@ -23,6 +23,7 @@ public class EkranNowaGra {
 	ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
 	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
+	
 	public EkranNowaGra() {
 		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
 		bg.setOpaque(true);

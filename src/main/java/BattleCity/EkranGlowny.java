@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 public class EkranGlowny {
 
-	static JFrame window;
+	public static JFrame window;
 	Container con;
 	JPanel buttonPanel;
 	JButton buttonNowaGra, buttonNajlepszeWyniki, buttonEdytorMap;
