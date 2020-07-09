@@ -12,16 +12,17 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
+		//new EkranGry2Graczy();
+		
 		JFrame okno = new JFrame();
 		
-		ekranGryFull gra1 = new ekranGryFull();
-		okno.setLayout(new BorderLayout());
-		gra1.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));		
+		EkranGry2Graczy gra1 = new EkranGry2Graczy();
+		okno.setLayout(new BorderLayout());	
 		okno.getContentPane().add(gra1);
 		okno.setTitle("Okno Gry");		
 		okno.setPreferredSize(new Dimension(816,639));
 		
-		okno.setLocation(2000, 50);
+		okno.setLocation(300, 50);
 		okno.setVisible(true);
 		okno.pack();
 		okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

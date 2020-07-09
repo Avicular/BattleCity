@@ -4,3 +4,5 @@ Poligon.ekranGryFull$ekranGry$loadBlock
 Poligon.ekranGryFull$ekranGry$loadGrass
 Poligon.ekranGryFull$ekranGry$enemyTank
 Poligon.ekranGryFull$ekranGry$loadTank
+Poligon.ekranGryFull$ekranGry$loadBorder
+

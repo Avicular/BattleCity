@@ -20,120 +20,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Poligon.ekranGryFull.ekranGry.enemyTank;
-
-public class ekranGryFull extends JPanel {
+public class EkranGry2Graczy extends JPanel {
 
 	public long distance1;
 	public long distance2;
-
-	public ekranGryFull() {
-
-		ekranGry game = new ekranGry();
-		game.setPreferredSize(new Dimension(800, 450));
-		add(game);
-
-		ekranGryMenu menu = new ekranGryMenu();
-		menu.setPreferredSize(new Dimension(800, 150));
-		menu.setLocation(0, 450);
-		add(menu);
-	}
-
-	public class ekranGryMenu extends JPanel {
-
-		public ekranGryMenu() {
-			setLayout(null);
-
-			JLabel playerOne = new JLabel("PLAYER 1");
-			playerOne.setBounds(0, 0, 150, 150);
-			playerOne.setBackground(Color.BLUE);
-			playerOne.setOpaque(true);
-			add(playerOne);
-
-			JLabel playerTwo = new JLabel("PLAYER 2");
-			playerTwo.setBounds(650, 0, 150, 150);
-			playerTwo.setBackground(Color.RED);
-			playerTwo.setOpaque(true);
-			add(playerTwo);
-
-			JLabel scorePlayerOne = new JLabel("TEXT");
-			scorePlayerOne.setBounds(150, 50, 200, 100);
-			scorePlayerOne.setBackground(Color.DARK_GRAY);
-			scorePlayerOne.setOpaque(true);
-			add(scorePlayerOne);
-
-			JLabel scorePlayerTwo = new JLabel("TEXT");
-			scorePlayerTwo.setBounds(450, 50, 200, 100);
-			scorePlayerTwo.setBackground(Color.DARK_GRAY);
-			scorePlayerTwo.setOpaque(true);
-			add(scorePlayerTwo);
-
-			JPanel lifePlayerOne = new JPanel();
-			JLabel tankLifeOneOne = new JLabel(new ImageIcon("src/main/resources/images/tank_life_icon_red_red_50x50.png"));
-			JLabel tankLifeOneTwo = new JLabel(new ImageIcon("src/main/resources/images/tank_life_icon_red_red_50x50.png"));
-			JLabel tankLifeOneThree = new JLabel(
-					new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_50x50.png"));
-			lifePlayerOne.add(tankLifeOneOne);
-			lifePlayerOne.add(tankLifeOneTwo);
-			lifePlayerOne.add(tankLifeOneThree);
-			lifePlayerOne.setBounds(150, 0, 200, 50);
-			lifePlayerOne.setBackground(Color.WHITE);
-			lifePlayerOne.setOpaque(true);
-			add(lifePlayerOne);
-
-			JPanel lifePlayerTwo = new JPanel();
-			JLabel tankLifeTwoOne = new JLabel(new ImageIcon("src/main/resources/images/tank_life_icon_red_red_50x50.png"));
-			JLabel tankLifeTwoTwo = new JLabel(new ImageIcon("src/main/resources/images/tank_life_icon_red_red_50x50.png"));
-			JLabel tankLifeTwoThree = new JLabel(
-					new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_50x50.png"));
-			lifePlayerTwo.add(tankLifeTwoOne);
-			lifePlayerTwo.add(tankLifeTwoTwo);
-			lifePlayerTwo.add(tankLifeTwoThree);
-			lifePlayerTwo.setBounds(450, 0, 200, 50);
-			lifePlayerTwo.setBackground(Color.WHITE);
-			lifePlayerTwo.setOpaque(true);
-			add(lifePlayerTwo);
-
-			JButton backButton = new JButton("powr鏒");
-			backButton.setBounds(350, 0, 100, 50);
-			backButton.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent a) {
-					setVisible(false);
-				}
-
-			});
-			add(backButton);
-
-			JButton pauseButton = new JButton("pauza");
-			pauseButton.setBounds(350, 50, 100, 50);
-			pauseButton.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent a) {
-
-				}
-
-			});
-			add(pauseButton);
-
-			JButton soundButton = new JButton("sound on/off");
-			soundButton.setBounds(350, 100, 100, 50);
-			soundButton.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent a) {
-
-				}
-
-			});
-			add(soundButton);
-
-		}
-	}
-
-	public class ekranGry extends JPanel {
 
 		String blueTank = "src/main/resources/images/basic_tank_icon.png";
 		String grayTank = "src/main/resources/images/gray_tank_icon.png";
@@ -145,23 +35,37 @@ public class ekranGryFull extends JPanel {
 		String fieldObject = "Poligon.ekranGryFull$ekranGry$loadField";
 		String blockObject = "Poligon.ekranGryFull$ekranGry$loadBlock";
 		String plantObject = "Poligon.ekranGryFull$ekranGry$loadGrass";
+		String barrierObject = "Poligon.ekranGryFull$ekranGry$loadBorder";
 		
-		loadTank tank1 = new loadTank(0, 400, blueTank);
-		loadTank tank2 = new loadTank(750, 400, redTank);
-		enemyTank eTank1 = new enemyTank(250, 0, grayTank);
-		enemyTank eTank2 = new enemyTank(375, 0, grayTank);
-		enemyTank eTank3 = new enemyTank(500, 0, grayTank);
+		loadTank tank1 = new loadTank(25, 525, blueTank);
+		loadTank tank2 = new loadTank(725, 525, redTank);
+		enemyTank eTank1 = new enemyTank(250, 100, grayTank);
+		enemyTank eTank2 = new enemyTank(375, 100, grayTank);
+		enemyTank eTank3 = new enemyTank(500, 100, grayTank);
 		enemyTank eTank4 = new enemyTank(650, 0, grayTank);
-
+		
+		int bulletPlayerOne = 300;
+		int bulletCounterOne = 299;
+		int bulletPlayerTwo = 300;
+		int bulletCounterTwo = 299;
+		
+		
 		ArrayList<loadWall> walls = new ArrayList<loadWall>();
 		ArrayList<loadField> fields = new ArrayList<loadField>();
 		ArrayList<loadBlock> blocks = new ArrayList<loadBlock>();
 		ArrayList<loadGrass> plants = new ArrayList<loadGrass>();
 		
+		ArrayList<loadBullet> bulletsPlayerOne = new ArrayList<loadBullet>();
+		ArrayList<loadBullet> bulletsPlayerTwo = new ArrayList<loadBullet>(); 
+		
+//		ArrayList<Double> bulletAngles = new ArrayList<Double>(); 
+		
 		public Double tankAngle = -Math.PI / 2;
 		public Double enemyAngle = Math.PI / 2;
+		//public Double bulletAngle = (double) 0;
+		//public TimerTask bulletMove1;
 
-		public ekranGry() {
+		public EkranGry2Graczy() {
 			setLayout(null);
 			setFocusable(true);
 // adding score and HP panel
@@ -210,19 +114,70 @@ public class ekranGryFull extends JPanel {
 			playerTwo.setOpaque(true);
 			add(playerTwo);
 			
+			JButton backButton = new JButton("powr鏒");
+			backButton.setBounds(325, 0, 150, 50);
+			backButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent a) {
+					setVisible(false);
+				}
+
+			});
+			add(backButton);
+
+			JButton pauseButton = new JButton("pauza");
+			pauseButton.setBounds(175, 0, 150, 50);
+			pauseButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent a) {
+
+				}
+
+			});
+			add(pauseButton);
+
+			JButton soundButton = new JButton("sound on/off");
+			soundButton.setBounds(475, 0, 150, 50);
+			soundButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent a) {
+
+				}
+
+			});
+			add(soundButton);
+
+// adding game area borders and scoreboard/menu borders
+			String hBorder = "src/main/resources/images/protection_border_icon_800px_25px.png";
+			String vBorder = "src/main/resources/images/protection_border_icon_25px_800px.png";
+			String vBorderShort = "src/main/resources/images/protection_border_icon_25px_50px.png";
+			
+			
+			
+			loadBorder borderTop = new loadBorder(0,50,hBorder);
+			add(borderTop);
+			loadBorder borderBottom = new loadBorder(0,575,hBorder);
+			add(borderBottom);
+			loadBorder borderMenuOne = new loadBorder(150,0,vBorderShort);
+			add(borderMenuOne);
+			loadBorder borderMenuTwo = new loadBorder(625,0,vBorderShort);
+			add(borderMenuTwo);
+			loadBorder borderLeft = new loadBorder(0,50,vBorder);
+			add(borderLeft);
+			loadBorder borderRight = new loadBorder(775,50,vBorder);
+			add(borderRight);
+			
+			
 // adding obstacles			
-			blocks.add(new loadBlock(0, 50));
-			walls.add(new loadWall(0, 100));
-			walls.add(new loadWall(0, 150));
-			walls.add(new loadWall(0, 250));
-			walls.add(new loadWall(0, 300));
-			walls.add(new loadWall(0, 350));
-			blocks.add(new loadBlock(50, 50));
+			blocks.add(new loadBlock(50, 75));
 			walls.add(new loadWall(50, 150));
 			walls.add(new loadWall(50, 200));
 			walls.add(new loadWall(50, 250));
 			walls.add(new loadWall(50, 350));
-			blocks.add(new loadBlock(100, 50));
+			blocks.add(new loadBlock(100, 75));
 			walls.add(new loadWall(100, 100));
 			fields.add(new loadField(100, 150));
 			walls.add(new loadWall(100, 200));
@@ -230,8 +185,7 @@ public class ekranGryFull extends JPanel {
 			walls.add(new loadWall(100, 300));
 			plants.add(new loadGrass(100, 350));
 			plants.add(new loadGrass(100, 400));
-			blocks.add(new loadBlock(150, 0));
-			blocks.add(new loadBlock(150, 50));
+			blocks.add(new loadBlock(150, 75));
 			walls.add(new loadWall(150, 100));
 			fields.add(new loadField(150, 150));
 			walls.add(new loadWall(150, 200));
@@ -246,15 +200,13 @@ public class ekranGryFull extends JPanel {
 			walls.add(new loadWall(200, 300));
 			plants.add(new loadGrass(200, 350));
 			plants.add(new loadGrass(200, 400));
-			walls.add(new loadWall(250, 100));
 			walls.add(new loadWall(250, 150));
 			blocks.add(new loadBlock(250, 200));
 			walls.add(new loadWall(250, 250));
 			walls.add(new loadWall(250, 300));
 			plants.add(new loadGrass(250, 350));
 			plants.add(new loadGrass(250, 400));
-			walls.add(new loadWall(300, 0));
-			walls.add(new loadWall(300, 50));
+			walls.add(new loadWall(300, 75));
 			walls.add(new loadWall(300, 100));
 			walls.add(new loadWall(300, 150));
 			blocks.add(new loadBlock(300, 200));
@@ -262,22 +214,19 @@ public class ekranGryFull extends JPanel {
 			walls.add(new loadWall(300, 300));
 			walls.add(new loadWall(300, 350));
 			walls.add(new loadWall(300, 400));
-			walls.add(new loadWall(350, 100));
 			walls.add(new loadWall(350, 150));
 			blocks.add(new loadBlock(350, 200));
 			walls.add(new loadWall(350, 250));
 			walls.add(new loadWall(350, 300));
 			walls.add(new loadWall(350, 350));
 			walls.add(new loadWall(350, 400));
-			walls.add(new loadWall(400, 100));
 			walls.add(new loadWall(400, 150));
 			blocks.add(new loadBlock(400, 200));
 			walls.add(new loadWall(400, 250));
 			walls.add(new loadWall(400, 300));
 			walls.add(new loadWall(400, 350));
 			walls.add(new loadWall(400, 400));
-			walls.add(new loadWall(450, 0));
-			walls.add(new loadWall(450, 50));
+			walls.add(new loadWall(450, 75));
 			walls.add(new loadWall(450, 100));
 			walls.add(new loadWall(450, 150));
 			blocks.add(new loadBlock(450, 200));
@@ -285,7 +234,6 @@ public class ekranGryFull extends JPanel {
 			walls.add(new loadWall(450, 300));
 			walls.add(new loadWall(450, 350));
 			walls.add(new loadWall(450, 400));
-			walls.add(new loadWall(500, 100));
 			walls.add(new loadWall(500, 150));
 			blocks.add(new loadBlock(500, 200));
 			walls.add(new loadWall(500, 250));
@@ -299,8 +247,7 @@ public class ekranGryFull extends JPanel {
 			walls.add(new loadWall(550, 300));
 			plants.add(new loadGrass(550, 350));
 			plants.add(new loadGrass(550, 400));
-			blocks.add(new loadBlock(600, 0));
-			blocks.add(new loadBlock(600, 50));
+			blocks.add(new loadBlock(600, 75));
 			walls.add(new loadWall(600, 100));
 			fields.add(new loadField(600, 150));
 			walls.add(new loadWall(600, 200));
@@ -308,7 +255,7 @@ public class ekranGryFull extends JPanel {
 			walls.add(new loadWall(600, 300));
 			plants.add(new loadGrass(600, 350));
 			plants.add(new loadGrass(600, 400));
-			blocks.add(new loadBlock(650, 50));
+			blocks.add(new loadBlock(650, 75));
 			walls.add(new loadWall(650, 100));
 			fields.add(new loadField(650, 150));
 			walls.add(new loadWall(650, 200));
@@ -316,17 +263,11 @@ public class ekranGryFull extends JPanel {
 			walls.add(new loadWall(650, 300));
 			plants.add(new loadGrass(650, 350));
 			plants.add(new loadGrass(650, 400));
-			blocks.add(new loadBlock(700, 50));
+			blocks.add(new loadBlock(700, 75));
 			walls.add(new loadWall(700, 150));
 			walls.add(new loadWall(700, 200));
 			walls.add(new loadWall(700, 250));
 			walls.add(new loadWall(700, 350));
-			blocks.add(new loadBlock(750, 50));
-			walls.add(new loadWall(750, 100));
-			walls.add(new loadWall(750, 150));
-			walls.add(new loadWall(750, 250));
-			walls.add(new loadWall(750, 300));
-			walls.add(new loadWall(750, 350));
 			
 			for (int i = 0; i < blocks.size(); i++)
 				add(blocks.get(i));
@@ -337,22 +278,6 @@ public class ekranGryFull extends JPanel {
 			for (int i = 0; i < plants.size(); i++)
 				add(plants.get(i));
 			
-// random obstacle generator			
-//			for (int i=0;i<75;i++) {
-//				int x = (int)(Math.random()*16)*50;
-//				int y = (int)(Math.random()*8)*50;
-//			walls.add(new loadWall(x,y));
-//			}
-//			for (int i=0;i<walls.size();i++)
-//				add(walls.get(i));
-
-// other method to generate obstacles			
-//			for (int a=1;a<=8;a++) {
-//				if (a%2 != 0)
-//				for (int i=1;i<=14;i++) {
-//					add(new loadWall(i*50,a*50));
-//				}
-//			}
 			add(tank1);
 			add(tank2);
 			add(eTank1);
@@ -360,11 +285,35 @@ public class ekranGryFull extends JPanel {
 			add(eTank3);
 			//add(eTank4);
 			playerOneMomement p1 = new playerOneMomement();
-			playerTwoMovement p2 = new playerTwoMovement();
+			playerTwoMovement p2 = new playerTwoMovement();	
+			
+			for (int i=0;i<bulletPlayerOne;i++) {
+				bulletsPlayerOne.add(new loadBullet(tank1.getX()+21,tank1.getY()-20));
+				add(bulletsPlayerOne.get(i));
+				bulletsPlayerOne.get(i).setVisible(false);
+				new Timer().scheduleAtFixedRate(new bulletMove(bulletsPlayerOne.get(i)), 0, 50);;
+			}
+			
+			for (int i=0;i<bulletPlayerTwo;i++) {
+				bulletsPlayerTwo.add(new loadBullet(tank1.getX()+21,tank1.getY()-20));
+				add(bulletsPlayerTwo.get(i));
+				bulletsPlayerTwo.get(i).setVisible(false);
+				new Timer().scheduleAtFixedRate(new bulletMove(bulletsPlayerTwo.get(i)), 0, 50);;
+			}
+			
+//			for(int i=0;i<bulletPlayerOne;i++) {
+//				bulletAngles.add((double) 0);
+//			}
+			
 			addKeyListener(p1);
 			addKeyListener(p2);
+			
 			setBackground(Color.DARK_GRAY);
-
+			
+//			Timer bulletTimer = new Timer();
+//			bulletsPlayerOne.get(bulletCounterOne).setVisible(true);
+//			bulletMove1 = new bulletMove(bulletsPlayerOne.get(bulletCounterOne));
+//			bulletTimer.scheduleAtFixedRate(bulletMove1, 0, 50);
 //			Timer enemyTimer1 = new Timer();
 //			
 //			enemyAutoMove enemyMove1 = new enemyAutoMove(eTank1);
@@ -377,17 +326,10 @@ public class ekranGryFull extends JPanel {
 //			enemyTimer1.scheduleAtFixedRate(enemyMove3, 0, 50);
 //			
 //			enemyAutoMove enemyMove4 = new enemyAutoMove(eTank4);
-//			enemyTimer1.scheduleAtFixedRate(enemyMove4, 0, 50);
-			
-			
+//			enemyTimer1.scheduleAtFixedRate(enemyMove4, 0, 50);		
 
 		}
-
-		private void setHorizontalTextAlignment(int center) {
-			// TODO Auto-generated method stub
-			
-		}
-
+		
 		public class loadTank extends JLabel {
 
 			int x;
@@ -493,9 +435,50 @@ public class ekranGryFull extends JPanel {
 				add(new JLabel(new ImageIcon("src/main/resources/images/indestructible_wall_icon_50px_50px.png")));
 			}
 		}
+		
+		public class loadBorder extends JLabel {
 
-		public class playerOneMomement implements KeyListener {
+			int x;
+			int y;
+			String borderPath;
+			
 
+			public loadBorder(int x, int y, String borderPath) {
+				setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+				new JLabel();
+				ImageIcon icon = new ImageIcon(borderPath);
+				setBounds(this.x = x, this.y = y, icon.getIconWidth(), icon.getIconHeight());
+				// setBackground(Color.BLACK);
+				add(new JLabel(icon));
+			}
+		}
+		
+		
+		
+		public class loadBullet extends JLabel {
+
+			int x;
+			int y;
+			
+			public loadBullet(int x, int y) {
+				setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+				setBounds(this.x = x, this.y = y, 8, 20);
+				ImageIcon bulletIcon = new ImageIcon("src/main/resources/images/red_bullet_icon.png");
+				add(new JLabel(bulletIcon) {
+					@Override
+					protected void paintComponent(Graphics g) {
+						Graphics2D g2 = (Graphics2D) g;
+//						g2.rotate(bulletAngles.get(bulletCounterOne), bulletIcon.getIconWidth() / 2, bulletIcon.getIconHeight() / 2);
+						g2.rotate(Math.PI, bulletIcon.getIconWidth() / 2, bulletIcon.getIconHeight() / 2);
+						g2.drawImage(bulletIcon.getImage(), 0, 0, null);
+					}
+				});
+			}
+			
+		}
+
+		public class playerOneMomement implements KeyListener {	
+			
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
@@ -512,8 +495,8 @@ public class ekranGryFull extends JPanel {
 					}
 					int counter = 0;
 					for (int i = 0; i <= 49; i++) {
-						String objectClass = getComponentAt(tank1.getX() + i, tank1.getY() - 1).getClass().getName();
-						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						String objectClass = getComponentAt(tank1.getX() + i, tank1.getY()-1).getClass().getName();
+						if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 							counter++;
 					}
 					if (counter > 0)
@@ -532,7 +515,7 @@ public class ekranGryFull extends JPanel {
 					int counter = 0;
 					for (int i = 0; i <= 49; i++) {
 						String objectClass = getComponentAt(tank1.getX() + i, tank1.getY() + 51).getClass().getName();
-						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 							counter++;
 					}
 					if (counter > 0)
@@ -549,9 +532,9 @@ public class ekranGryFull extends JPanel {
 						tank1.repaint();
 					}
 					int counter = 0;
-					for (int i = 0; i <= 49; i++) {
+					for (int i = 0; i < 49; i++) {
 						String objectClass = getComponentAt(tank1.getX() - 1, tank1.getY() + i).getClass().getName();
-						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 							counter++;
 					}
 					if (counter > 0)
@@ -570,7 +553,7 @@ public class ekranGryFull extends JPanel {
 					int counter = 0;
 					for (int i = 0; i <= 49; i++) {
 						String objectClass = getComponentAt(tank1.getX() + 51, tank1.getY() + i).getClass().getName();
-						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 							counter++;
 					}
 					if (counter > 0)
@@ -582,13 +565,43 @@ public class ekranGryFull extends JPanel {
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-//					System.out.println(tank1.getLocation());
-//					System.out.println(getComponentAt(50, 350).getClass().getName());
-//					System.out.println("Player's 1 tank distance: " + distance1 * 2 + " pixels.");
-					System.out.println(getComponentAt(100,150).getClass().getName());
-					System.out.println(getComponentAt(100,100).getClass().getName());
-					System.out.println(getComponentAt(250,200).getClass().getName());
-					System.out.println(getComponentAt(100,400).getClass().getName());
+					if (tankAngle == -Math.PI / 2) {
+//						bulletAngles.get(bulletCounterOne)
+//						bulletAngles.set(bulletCounterOne, Math.PI);
+						bulletsPlayerOne.get(bulletCounterOne).setBounds(tank1.getX()+21, tank1.getY()-20, 8, 20);
+						bulletsPlayerOne.get(bulletCounterOne).repaint();
+						bulletsPlayerOne.get(bulletCounterOne).setVisible(true);
+						bulletCounterOne--;
+//						System.out.println(bulletAngles.get(bulletCounterOne));
+						System.out.println("Zosta這 " + bulletCounterOne + " pocisk闚!");
+					}
+					else if (tankAngle == (double) 0) {
+						//bulletAngles.get(bulletCounterOne)
+						bulletsPlayerOne.get(bulletCounterOne).setBounds(tank1.getX()+70, tank1.getY()+21, 8, 20);
+						bulletsPlayerOne.get(bulletCounterOne).repaint();
+						bulletsPlayerOne.get(bulletCounterOne).setVisible(true);
+						bulletCounterOne--;
+//						System.out.println(bulletAngles.get(bulletCounterOne));
+						System.out.println("Zosta這 " + bulletCounterOne + " pocisk闚!");
+					}
+					else if (tankAngle == Math.PI/2) {
+//						bulletAngles.get(bulletCounterOne)
+						bulletsPlayerOne.get(bulletCounterOne).setBounds(tank1.getX()+29, tank1.getY()+70, 8, 20);
+						bulletsPlayerOne.get(bulletCounterOne).repaint();
+						bulletsPlayerOne.get(bulletCounterOne).setVisible(true);
+						bulletCounterOne--;
+//						System.out.println(bulletAngles.get(bulletCounterOne));
+						System.out.println("Zosta這 " + bulletCounterOne + " pocisk闚!");
+					}
+					else if (tankAngle == Math.PI) {
+//						bulletAngles.get(bulletCounterOne)
+						bulletsPlayerOne.get(bulletCounterOne).setBounds(tank1.getX()-20, tank1.getY()+29, 8, 20);
+						bulletsPlayerOne.get(bulletCounterOne).repaint();
+						bulletsPlayerOne.get(bulletCounterOne).setVisible(true);
+						bulletCounterOne--;
+//						System.out.println(bulletAngles.get(bulletCounterOne));
+						System.out.println("Zosta這 " + bulletCounterOne + " pocisk闚!");
+					}
 
 				}
 
@@ -620,7 +633,7 @@ public class ekranGryFull extends JPanel {
 					int counter = 0;
 					for (int i = 0; i <= 49; i++) {
 						String objectClass = getComponentAt(tank2.getX() + i, tank2.getY() - 1).getClass().getName();
-						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 							counter++;
 					}
 					if (counter > 0)
@@ -639,7 +652,7 @@ public class ekranGryFull extends JPanel {
 					int counter = 0;
 					for (int i = 0; i <= 49; i++) {
 						String objectClass = getComponentAt(tank2.getX() + i, tank2.getY() + 51).getClass().getName();
-						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 							counter++;
 					}
 					if (counter > 0)
@@ -658,7 +671,7 @@ public class ekranGryFull extends JPanel {
 					int counter = 0;
 					for (int i = 0; i <= 49; i++) {
 						String objectClass = getComponentAt(tank2.getX() - 1, tank2.getY() + i).getClass().getName();
-						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 							counter++;
 					}
 					if (counter > 0)
@@ -677,7 +690,7 @@ public class ekranGryFull extends JPanel {
 					int counter = 0;
 					for (int i = 0; i <= 49; i++) {
 						String objectClass = getComponentAt(tank2.getX() + 51, tank2.getY() + i).getClass().getName();
-						if (objectClass == "Poligon.ekranGryFull$ekranGry$loadWall")
+						if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 							counter++;
 					}
 					if (counter > 0)
@@ -731,7 +744,7 @@ public class ekranGryFull extends JPanel {
 						int counter = 0;
 						for (int i = 0; i <= 49; i++) {
 							String objectClass = getComponentAt(eTank1.getX() + i, eTank1.getY() - 1).getClass().getName();		
-							if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject)
+							if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 								counter++;
 						}
 						if (counter > 0)
@@ -747,7 +760,7 @@ public class ekranGryFull extends JPanel {
 						int counter = 0;
 						for (int i = 0; i <= 49; i++) {
 							String objectClass = getComponentAt(eTank1.getX() + 51, eTank1.getY() + i).getClass().getName();		
-							if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject)
+							if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 								counter++;
 						}
 						if (counter > 0)
@@ -763,7 +776,7 @@ public class ekranGryFull extends JPanel {
 						int counter = 0;
 						for (int i = 0; i <= 49; i++) {
 							String objectClass = getComponentAt(eTank1.getX() + i, eTank1.getY() + 51).getClass().getName();
-							if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject)
+							if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 								counter++;
 						}
 						if (counter > 0)
@@ -779,7 +792,7 @@ public class ekranGryFull extends JPanel {
 						int counter = 0;
 						for (int i = 0; i <= 49; i++) {
 							String objectClass = getComponentAt(eTank1.getX() - 1, eTank1.getY() + i).getClass().getName();
-							if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject)
+							if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
 								counter++;
 						}
 						if (counter > 0)
@@ -794,6 +807,76 @@ public class ekranGryFull extends JPanel {
 
 		}
 
-	}
+		
+		public class bulletMove extends TimerTask {
+			
+			loadBullet bullet;
+			Double tankangle;
+			int timer = 0;
+			
+			public bulletMove(loadBullet bullet) {
+				this.bullet = bullet;
+			}
+
+			@Override
+			public void run() {
+				timer++;
+			
+				bullet.setLocation(bullet.getX(), bullet.getY()-4);
+				if (bullet.isVisible()){
+					String objectClass = getComponentAt(bullet.getX(), bullet.getY()-1).getClass().getName();		
+					if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject) {
+						bullet.removeAll();
+					}	
+				}
+//				bullet.setLocation(bullet.getX(), bullet.getY()+4);
+//				bullet.setLocation(bullet.getX()-4, bullet.getY());
+//				bullet.setLocation(bullet.getX()+4, bullet.getY());
+				
+//				if (bulletAngles.get(bulletCounterOne) == 0) {
+//					bullet.setLocation(bullet.getX(), bullet.getY()-4);
+//					if (bullet.isVisible()){
+//						String objectClass = getComponentAt(bullet.getX(), bullet.getY()-1).getClass().getName();		
+//						if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject) {
+//							bullet.removeAll();
+//					
+//				}
+				
+				
+//				if (timer==1) {
+//					if (tankangle == (double) 0) {
+//						
+//					}
+//				}
+					//if
+				
+//				if (bulletsPlayerOne.get(bulletCounterOne).bulletAngle == (double) 0) {
+//					
+//					bullet.setLocation(bullet.getX(), bullet.getY()-4);
+//					if (bullet.isVisible()){
+//					String objectClass = getComponentAt(bullet.getX(), bullet.getY()-1).getClass().getName();		
+//					if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject) {
+//						bullet.removeAll();
+//					}
+//				}
+//				
+//				} else if (bulletsPlayerOne.get(bulletCounterOne).bulletAngle == Math.PI/2) {
+//					
+//					bullet.setLocation(bullet.getX()+4, bullet.getY());
+//					if (bullet.isVisible()){
+//					String objectClass = getComponentAt(bullet.getX(), bullet.getY()-1).getClass().getName();		
+//					if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject) {
+//						bullet.removeAll();
+//					}
+//				}
+//				
+//				}
+				
+				//System.out.println(timer);
+			}
+
+		}
+		
+	
 
 }
