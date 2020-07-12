@@ -21,10 +21,12 @@ import gameContent.twoPlayersGame;
 public class EkranGry1Gracz {
 	
 	static JFrame window;
-	
+	ImageIcon appIcon = new ImageIcon("src/main/resources/images/12345.png");
 	public EkranGry1Gracz(){
+		
 		window = new JFrame("1 PLAYER");
 		onePlayerGame newOnePlayerGame = new onePlayerGame();
+		window.setIconImage(appIcon.getImage());
 		window.setLayout(new BorderLayout());
 		window.getContentPane().add(newOnePlayerGame);
 		window.setPreferredSize(new Dimension(806,628));

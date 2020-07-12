@@ -115,7 +115,7 @@ public class onePlayerGame extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					EkranGlowny.buttonSoundEffect();
 					EkranGry1Gracz.setVisible();
-					EkranNowaGra.window.setVisible(true);
+					new EkranNowaGra();
 				}
 			});
 			add(backButton);

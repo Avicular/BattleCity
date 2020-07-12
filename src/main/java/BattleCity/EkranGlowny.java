@@ -37,17 +37,17 @@ public class EkranGlowny {
 		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
 		bg.setOpaque(true);
 		bg.setBounds(0, 0, 800, 600);
-		ImageIcon tlo = new ImageIcon("src/main/resources/images/12345.png");
+		ImageIcon appIcon = new ImageIcon("src/main/resources/images/12345.png");
 		ImageIcon nowaGra = new ImageIcon("src/main/resources/images/new_game.jpg");
 		ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 		ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
 		window = new JFrame("Battle City");
 		window.setSize(800, 600);
 		window.setLocation(300, 50);
-		window.setIconImage(tlo.getImage());
+		window.setIconImage(appIcon.getImage());
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
-		window.getContentPane().add(bg);
+		
 
 		window.setLayout(null);
 		con = window.getContentPane();
@@ -132,7 +132,7 @@ public class EkranGlowny {
 		buttonMuzyka.setBounds(670, 470, 62, 50);
 		buttonMuzyka.setIcon(music);
 		con.add(buttonMuzyka);
-
+		window.getContentPane().add(bg);
 		clickSound = "src/main/resources/sound/buttonsound.wav";
 		backgroundMusic = "src/main/resources/sound/muzykawtle.wav";
 		

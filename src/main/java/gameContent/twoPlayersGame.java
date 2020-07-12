@@ -135,7 +135,7 @@ public class twoPlayersGame extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					EkranGlowny.buttonSoundEffect();
 					EkranGry2Graczy.setVisible();
-					EkranNowaGra.window.setVisible(true);
+					new EkranNowaGra();
 				}
 			});
 			add(backButton);

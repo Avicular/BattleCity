@@ -20,11 +20,13 @@ import gameContent.twoPlayersGame;
 public class EkranGry2Graczy {
 	
 	static JFrame window;
+	ImageIcon appIcon = new ImageIcon("src/main/resources/images/12345.png");
 	public EkranGry2Graczy(){
 	
 	
 	window = new JFrame("2 PLAYERS");
 	twoPlayersGame newTwoPlayersGame = new twoPlayersGame();
+	window.setIconImage(appIcon.getImage());
 	window.setLayout(new BorderLayout());
 	window.getContentPane().add(newTwoPlayersGame);
 	window.setPreferredSize(new Dimension(806,628));
