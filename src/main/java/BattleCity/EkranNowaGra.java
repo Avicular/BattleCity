@@ -15,26 +15,28 @@ import javax.swing.JPanel;
 
 public class EkranNowaGra {
 
-	static JFrame window;
+	public static JFrame window;
 	Container con;
 	JPanel buttonPanel;
 	JButton buttonMapyStandardowe, buttonMapyCustomowe, buttonWroc, buttonMuzyka;
 	String clickSound, backgroundMusic, muzykaOnOff;
 	ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
+	ImageIcon imgicon = new ImageIcon("src/main/resources/images/12345.png");
 	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
+	
 	public EkranNowaGra() {
 		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
 		bg.setOpaque(true);
 		bg.setBounds(0, 0, 800, 600);
-		ImageIcon imgicon = new ImageIcon("src/main/resources/images/12345.png");
+		
 		window = new JFrame("New Game");
 		window.setSize(800, 600);
 		window.setLocation(300, 50);
 		window.setIconImage(imgicon.getImage());
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
-		window.getContentPane().add(bg);
+		
 
 		window.setLayout(null);
 		con = window.getContentPane();
@@ -103,32 +105,30 @@ public class EkranNowaGra {
 		buttonMuzyka.setBorderPainted(false);
 		buttonMuzyka.setActionCommand("musicB");
 		
-		if (EkranGlowny.muzykaOnOff.equals("off")) {
-			buttonMuzyka.setIcon(musicOff);
-		}
-		else 
-			buttonMuzyka.setIcon(music);
 		buttonMuzyka.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				EkranGlowny.music();
 				if (EkranGlowny.muzykaOnOff.equals("on")) {
-					ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 					buttonMuzyka.setIcon(music);
 				} else if (EkranGlowny.muzykaOnOff.equals("off")) {
 					muzykaOnOff = "off";
-					ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
 					buttonMuzyka.setIcon(musicOff);
 
 				}
 			}
 
 		});
+		if (EkranGlowny.muzykaOnOff.equals("off")) {
+			muzykaOnOff = "off";
+			buttonMuzyka.setIcon(musicOff);}
+		else {
+			buttonMuzyka.setIcon(music);
+		}	
 		buttonMuzyka.setBounds(670, 470, 50, 50);
-		
-		buttonMuzyka.setIcon(music);
 		con.add(buttonMuzyka);
+		window.getContentPane().add(bg);
 		window.setVisible(true);
 		
 		

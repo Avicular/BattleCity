@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -15,16 +16,22 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import BattleCity.EkranGlowny;
+import BattleCity.EkranGry1Gracz;
+import BattleCity.EkranGry2Graczy;
+import BattleCity.EkranNowaGra;
+
 public class twoPlayersGame extends JPanel {
 
 	public long distance1;
 	public long distance2;
-
+	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
 		String blueTank = "src/main/resources/images/basic_tank_icon.png";
 		String grayTank = "src/main/resources/images/gray_tank_icon.png";
 		String redTank = "src/main/resources/images/red_tank_icon.png";
@@ -114,38 +121,60 @@ public class twoPlayersGame extends JPanel {
 			playerTwo.setOpaque(true);
 			add(playerTwo);
 			
-			JButton backButton = new JButton("powrót");
+			JButton backButton = new JButton("Back");
 			backButton.setBounds(325, 0, 150, 50);
+			backButton.setBorderPainted(false);
+			backButton.setBorder(BorderFactory.createEtchedBorder(1));
+			backButton.setForeground(Color.white);
+			backButton.setBackground(Color.black);
+			backButton.setFont(font);
+			backButton.setActionCommand("soundB");
 			backButton.addActionListener(new ActionListener() {
 
 				@Override
-				public void actionPerformed(ActionEvent a) {
-					setVisible(false);
+				public void actionPerformed(ActionEvent e) {
+					EkranGlowny.buttonSoundEffect();
+					EkranGry2Graczy.setVisible();
+					new EkranNowaGra();
 				}
-
 			});
 			add(backButton);
 
-			JButton pauseButton = new JButton("pauza");
+			JButton pauseButton = new JButton("Pause");
 			pauseButton.setBounds(175, 0, 150, 50);
+			pauseButton.setBorderPainted(false);
+			pauseButton.setBorder(BorderFactory.createEtchedBorder(1));
+			pauseButton.setForeground(Color.white);
+			pauseButton.setBackground(Color.black);
+			pauseButton.setFont(font);
+			pauseButton.setActionCommand("soundB");
 			pauseButton.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent a) {
-
+					EkranGlowny.buttonSoundEffect();
 				}
 
 			});
 			add(pauseButton);
 
-			JButton soundButton = new JButton("sound on/off");
+			
+			JButton soundButton = new JButton("Music");
 			soundButton.setBounds(475, 0, 150, 50);
+			soundButton.setBorderPainted(false);
+			soundButton.setBorder(BorderFactory.createEtchedBorder(1));
+			soundButton.setForeground(Color.white);
+			soundButton.setBackground(Color.black);
+			soundButton.setFont(font);
+			soundButton.setActionCommand("musicB");
+			
 			soundButton.addActionListener(new ActionListener() {
 
 				@Override
-				public void actionPerformed(ActionEvent a) {
-
-				}
+				public void actionPerformed(ActionEvent e) {
+				EkranGlowny.music();
+				
+			}
 
 			});
 			add(soundButton);
@@ -504,7 +533,7 @@ public class twoPlayersGame extends JPanel {
 					else
 						tank1.setLocation(tank1.getX(), tank1.getY() - 2);
 					distance1++;
-					System.out.println("Ruch o pixel w górê.");
+					System.out.println("Ruch o pixel w gï¿½rï¿½.");
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_S) {
@@ -523,7 +552,7 @@ public class twoPlayersGame extends JPanel {
 					else
 						tank1.setLocation(tank1.getX(), tank1.getY() + 2);
 					distance1++;
-					System.out.println("Ruch o pixel w dó³.");
+					System.out.println("Ruch o pixel w dï¿½.");
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_A) {
@@ -573,7 +602,7 @@ public class twoPlayersGame extends JPanel {
 						bulletsPlayerOne.get(bulletCounterOne).setVisible(true);
 						bulletCounterOne--;
 //						System.out.println(bulletAngles.get(bulletCounterOne));
-						System.out.println("Zosta³o " + bulletCounterOne + " pocisków!");
+						System.out.println("Zostaï¿½o " + bulletCounterOne + " pociskï¿½w!");
 					}
 					else if (tankAngle == (double) 0) {
 						//bulletAngles.get(bulletCounterOne)
@@ -582,7 +611,7 @@ public class twoPlayersGame extends JPanel {
 						bulletsPlayerOne.get(bulletCounterOne).setVisible(true);
 						bulletCounterOne--;
 //						System.out.println(bulletAngles.get(bulletCounterOne));
-						System.out.println("Zosta³o " + bulletCounterOne + " pocisków!");
+						System.out.println("Zostaï¿½o " + bulletCounterOne + " pociskï¿½w!");
 					}
 					else if (tankAngle == Math.PI/2) {
 //						bulletAngles.get(bulletCounterOne)
@@ -591,7 +620,7 @@ public class twoPlayersGame extends JPanel {
 						bulletsPlayerOne.get(bulletCounterOne).setVisible(true);
 						bulletCounterOne--;
 //						System.out.println(bulletAngles.get(bulletCounterOne));
-						System.out.println("Zosta³o " + bulletCounterOne + " pocisków!");
+						System.out.println("Zostaï¿½o " + bulletCounterOne + " pociskï¿½w!");
 					}
 					else if (tankAngle == Math.PI) {
 //						bulletAngles.get(bulletCounterOne)
@@ -600,7 +629,7 @@ public class twoPlayersGame extends JPanel {
 						bulletsPlayerOne.get(bulletCounterOne).setVisible(true);
 						bulletCounterOne--;
 //						System.out.println(bulletAngles.get(bulletCounterOne));
-						System.out.println("Zosta³o " + bulletCounterOne + " pocisków!");
+						System.out.println("Zostaï¿½o " + bulletCounterOne + " pociskï¿½w!");
 					}
 					
 					System.out.println(getComponentAt(tank1.getX() - 1, tank1.getY()).getClass().getName());
@@ -643,7 +672,7 @@ public class twoPlayersGame extends JPanel {
 					else
 						tank2.setLocation(tank2.getX(), tank2.getY() - 2);
 					distance2++;
-					System.out.println("Ruch o pixel w górê.");
+					System.out.println("Ruch o pixel w gï¿½rï¿½.");
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -662,7 +691,7 @@ public class twoPlayersGame extends JPanel {
 					else
 						tank2.setLocation(tank2.getX(), tank2.getY() + 2);
 					distance2++;
-					System.out.println("Ruch o pixel w dó³.");
+					System.out.println("Ruch o pixel w dï¿½.");
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {

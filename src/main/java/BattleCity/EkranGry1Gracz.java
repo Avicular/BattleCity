@@ -20,15 +20,13 @@ import gameContent.twoPlayersGame;
 
 public class EkranGry1Gracz {
 	
-//	JButton buttonWroc, buttonMuzyka;
-//	String clickSound, backgroundMusic, muzykaOnOff;
-//	ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
-//	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
-//	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
-	
+	static JFrame window;
+	ImageIcon appIcon = new ImageIcon("src/main/resources/images/12345.png");
 	public EkranGry1Gracz(){
-		JFrame window = new JFrame("1 PLAYER");
+		
+		window = new JFrame("1 PLAYER");
 		onePlayerGame newOnePlayerGame = new onePlayerGame();
+		window.setIconImage(appIcon.getImage());
 		window.setLayout(new BorderLayout());
 		window.getContentPane().add(newOnePlayerGame);
 		window.setPreferredSize(new Dimension(806,628));
@@ -39,4 +37,7 @@ public class EkranGry1Gracz {
 		window.setResizable(false);
 	}
 
+	public static void setVisible () {
+		window.setVisible(false);
+	}
 }

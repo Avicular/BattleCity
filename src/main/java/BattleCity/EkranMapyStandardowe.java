@@ -35,7 +35,7 @@ public class EkranMapyStandardowe {
 	window.setIconImage(imgicon.getImage());
 	window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	window.setResizable(false);
-	window.getContentPane().add(bg);
+	
 
 	window.setLayout(null);
 	con = window.getContentPane();
@@ -126,8 +126,8 @@ public class EkranMapyStandardowe {
 	}
 	else 
 		buttonMuzyka.setIcon(musicOff);
-	buttonMuzyka.setIcon(music);
 	con.add(buttonMuzyka);
+	window.getContentPane().add(bg);
 	window.setVisible(true);
 	}
 }
