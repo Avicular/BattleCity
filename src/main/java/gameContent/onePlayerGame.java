@@ -29,13 +29,13 @@ public class onePlayerGame extends JPanel {
 		String grayTank = "src/main/resources/images/gray_tank_icon.png";
 		String redTank = "src/main/resources/images/red_tank_icon.png";
 		
-		String tankObject = "Poligon.ekranGryFull$ekranGry$loadTank";
-		String enemyObject = "Poligon.ekranGryFull$ekranGry$enemyTank";
-		String wallObject = "Poligon.ekranGryFull$ekranGry$loadWall";
-		String fieldObject = "Poligon.ekranGryFull$ekranGry$loadField";
-		String blockObject = "Poligon.ekranGryFull$ekranGry$loadBlock";
-		String plantObject = "Poligon.ekranGryFull$ekranGry$loadGrass";
-		String barrierObject = "Poligon.ekranGryFull$ekranGry$loadBorder";
+		String tankObject = "gameContent.onePlayerGame$loadTank";
+		String enemyObject = "gameContent.onePlayerGame$enemyTank";
+		String wallObject = "gameContent.onePlayerGame$loadWall";
+		String fieldObject = "gameContent.onePlayerGame$loadField";
+		String blockObject = "gameContent.onePlayerGame$loadBlock";
+		String plantObject = "gameContent.onePlayerGame$loadGrass";
+		String barrierObject = "gameContent.onePlayerGame$loadBorder";
 		
 		loadTank tank1 = new loadTank(25, 525, redTank);
 

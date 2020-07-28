@@ -29,13 +29,13 @@ public class twoPlayersGame extends JPanel {
 		String grayTank = "src/main/resources/images/gray_tank_icon.png";
 		String redTank = "src/main/resources/images/red_tank_icon.png";
 		
-		String tankObject = "Poligon.ekranGryFull$ekranGry$loadTank";
-		String enemyObject = "Poligon.ekranGryFull$ekranGry$enemyTank";
-		String wallObject = "Poligon.ekranGryFull$ekranGry$loadWall";
-		String fieldObject = "Poligon.ekranGryFull$ekranGry$loadField";
-		String blockObject = "Poligon.ekranGryFull$ekranGry$loadBlock";
-		String plantObject = "Poligon.ekranGryFull$ekranGry$loadGrass";
-		String barrierObject = "Poligon.ekranGryFull$ekranGry$loadBorder";
+		String tankObject = "gameContent.twoPlayersGame$loadTank";
+		String enemyObject = "gameContent.twoPlayersGame$enemyTank";
+		String wallObject = "gameContent.twoPlayersGame$loadWall";
+		String fieldObject = "gameContent.twoPlayersGame$loadField";
+		String blockObject = "gameContent.twoPlayersGame$loadBlock";
+		String plantObject = "gameContent.twoPlayersGame$loadGrass";
+		String barrierObject = "gameContent.twoPlayersGame$loadBorder";
 		
 		loadTank tank1 = new loadTank(25, 525, blueTank);
 		loadTank tank2 = new loadTank(725, 525, redTank);
@@ -314,16 +314,16 @@ public class twoPlayersGame extends JPanel {
 //			bulletsPlayerOne.get(bulletCounterOne).setVisible(true);
 //			bulletMove1 = new bulletMove(bulletsPlayerOne.get(bulletCounterOne));
 //			bulletTimer.scheduleAtFixedRate(bulletMove1, 0, 50);
-//			Timer enemyTimer1 = new Timer();
-//			
-//			enemyAutoMove enemyMove1 = new enemyAutoMove(eTank1);
-//			enemyTimer1.scheduleAtFixedRate(enemyMove1, 0, 50);
-//			
-//			enemyAutoMove enemyMove2 = new enemyAutoMove(eTank2);
-//			enemyTimer1.scheduleAtFixedRate(enemyMove2, 0, 50);
-//			
-//			enemyAutoMove enemyMove3 = new enemyAutoMove(eTank3);
-//			enemyTimer1.scheduleAtFixedRate(enemyMove3, 0, 50);
+			Timer enemyTimer1 = new Timer();
+			
+			enemyAutoMove enemyMove1 = new enemyAutoMove(eTank1);
+			enemyTimer1.scheduleAtFixedRate(enemyMove1, 0, 50);
+			
+			enemyAutoMove enemyMove2 = new enemyAutoMove(eTank2);
+			enemyTimer1.scheduleAtFixedRate(enemyMove2, 0, 50);
+			
+			enemyAutoMove enemyMove3 = new enemyAutoMove(eTank3);
+			enemyTimer1.scheduleAtFixedRate(enemyMove3, 0, 50);
 //			
 //			enemyAutoMove enemyMove4 = new enemyAutoMove(eTank4);
 //			enemyTimer1.scheduleAtFixedRate(enemyMove4, 0, 50);		
@@ -602,7 +602,9 @@ public class twoPlayersGame extends JPanel {
 //						System.out.println(bulletAngles.get(bulletCounterOne));
 						System.out.println("Zosta³o " + bulletCounterOne + " pocisków!");
 					}
-
+					
+					System.out.println(getComponentAt(tank1.getX() - 1, tank1.getY()).getClass().getName());
+					
 				}
 
 			}

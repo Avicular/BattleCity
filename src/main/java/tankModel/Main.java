@@ -1,22 +1,17 @@
-package Poligon;
+package tankModel;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
-public class Main {	
-	
-	
-	public static void main(String[] args) {
-		
-		//new EkranGry2Graczy();
-		
+public class Main {
+public static void main(String[] args) throws IOException {
+				
 		JFrame okno = new JFrame();
 		
-		EkranGry2Graczy gra1 = new EkranGry2Graczy();
+		Poligon gra1 = new Poligon();
 		okno.setLayout(new BorderLayout());	
 		okno.getContentPane().add(gra1);
 		okno.setTitle("Okno Gry");		

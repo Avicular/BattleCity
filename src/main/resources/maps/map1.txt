@@ -1,0 +1,15 @@
+150,100,src/main/resources/images/editor_field_50px_50px.png
+200,100,src/main/resources/images/bush_field_bordered_icon_50px_50px.png
+350,100,src/main/resources/images/bush_field_bordered_icon_50px_50px.png
+500,150,src/main/resources/images/bush_field_bordered_icon_50px_50px.png
+550,150,src/main/resources/images/indestructible_wall_icon_50px_50px.png
+650,300,src/main/resources/images/indestructible_wall_icon_50px_50px.png
+600,400,src/main/resources/images/indestructible_wall_icon_50px_50px.png
+450,400,src/main/resources/images/indestructible_wall_icon_50px_50px.png
+450,500,src/main/resources/images/editor_field_50px_50px.png
+550,500,src/main/resources/images/protection_barrier_icon_50px_50px.png
+450,500,src/main/resources/images/protection_barrier_icon_50px_50px.png
+250,500,src/main/resources/images/protection_barrier_icon_50px_50px.png
+200,500,src/main/resources/images/protection_barrier_icon_50px_50px.png
+150,500,src/main/resources/images/protection_barrier_icon_50px_50px.png
+100,500,src/main/resources/images/protection_barrier_icon_50px_50px.png
