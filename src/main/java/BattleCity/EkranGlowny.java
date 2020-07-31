@@ -4,8 +4,11 @@ package BattleCity;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -28,26 +31,25 @@ public class EkranGlowny {
 	static String clickSound;
 	static String backgroundMusic;
 	public static String muzykaOnOff;
+	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
 	static SoundEffect se = new SoundEffect();
 	static Music mu = new Music();
 	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
+
 	public EkranGlowny() {
-		
-		
+
 		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
 		bg.setOpaque(true);
 		bg.setBounds(0, 0, 800, 600);
 		ImageIcon appIcon = new ImageIcon("src/main/resources/images/12345.png");
 		ImageIcon nowaGra = new ImageIcon("src/main/resources/images/new_game.jpg");
 		ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
-		ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
 		window = new JFrame("Battle City");
 		window.setSize(800, 600);
 		window.setLocation(300, 50);
 		window.setIconImage(appIcon.getImage());
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
-		
 
 		window.setLayout(null);
 		con = window.getContentPane();
@@ -75,7 +77,7 @@ public class EkranGlowny {
 				new EkranNowaGra();
 			}
 		});
-		
+
 		buttonEdytorMap = new JButton("Map Editor");
 		buttonEdytorMap.setFocusPainted(true);
 		buttonEdytorMap.setForeground(Color.white);
@@ -95,7 +97,7 @@ public class EkranGlowny {
 
 			}
 		});
-		
+
 		buttonNajlepszeWyniki = new JButton("Highscores");
 		buttonNajlepszeWyniki.setFocusPainted(true);
 		buttonNajlepszeWyniki.setForeground(Color.white);
@@ -114,36 +116,56 @@ public class EkranGlowny {
 				new EkranNajlepszeWyniki();
 			}
 		});
-	
-		
+
 		buttonMuzyka = new JButton();
 		buttonMuzyka.setFocusPainted(false);
 		buttonMuzyka.setActionCommand("musicB");
 		buttonMuzyka.setBorderPainted(false);
 		buttonMuzyka.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				music();
 			}
 		});
-		
-		
+
 		buttonMuzyka.setBounds(670, 470, 62, 50);
 		buttonMuzyka.setIcon(music);
 		con.add(buttonMuzyka);
+
 		window.getContentPane().add(bg);
 		clickSound = "src/main/resources/sound/buttonsound.wav";
 		backgroundMusic = "src/main/resources/sound/muzykawtle.wav";
-		
+
 		window.setVisible(true);
+
 		mu.setFile(backgroundMusic);
 		mu.play();
 		mu.loop();
 		muzykaOnOff = "on";
-	
-		
-		
+		musicOnOffWhenMinimizeMaximazeWindow();
+
+	}
+
+	public static void musicOnOffWhenMinimizeMaximazeWindow() {
+		window.addWindowStateListener(new WindowAdapter() {
+			@Override
+			public void windowStateChanged(WindowEvent we) {
+				ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
+				ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
+				if (we.getNewState() == Frame.ICONIFIED) {
+					mu.stop();
+					muzykaOnOff = "off";
+					buttonMuzyka.setIcon(musicOff);
+				} else if (we.getNewState() != Frame.ICONIFIED) {
+					mu.setFile(backgroundMusic);
+					mu.play();
+					mu.loop();
+					muzykaOnOff = "on";
+					buttonMuzyka.setIcon(music);
+				}
+			}
+		});
 	}
 
 	public static void music() {
@@ -152,7 +174,7 @@ public class EkranGlowny {
 			mu.play();
 			mu.loop();
 			muzykaOnOff = "on";
-			
+
 			ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 			buttonMuzyka.setIcon(music);
 		} else if (muzykaOnOff.equals("on")) {
@@ -163,7 +185,7 @@ public class EkranGlowny {
 
 		}
 	}
-	
+
 	public static void buttonSoundEffect() {
 		se.setFile(clickSound);
 		se.play();

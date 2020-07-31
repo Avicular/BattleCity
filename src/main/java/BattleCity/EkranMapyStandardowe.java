@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 public class EkranMapyStandardowe {
 	
-	JFrame window;
+	static JFrame window;
 	Container con;
 	JPanel buttonPanel;
 	JButton button1Gracz, button2Graczy, buttonWroc, buttonMuzyka;
@@ -57,7 +57,7 @@ public class EkranMapyStandardowe {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new EkranGry1Gracz();
+			new EkranWyboruMapyStandardowejSingleplayer();
 			window.setVisible(false);
 			EkranGlowny.buttonSoundEffect();
 		}
@@ -75,7 +75,7 @@ public class EkranMapyStandardowe {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new EkranGry2Graczy();
+			new EkranWyboruMapyStandardowejMultiplayer();
 			window.setVisible(false);
 			EkranGlowny.buttonSoundEffect();
 		}
