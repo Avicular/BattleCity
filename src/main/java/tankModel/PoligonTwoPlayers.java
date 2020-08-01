@@ -21,7 +21,7 @@ import BattleCity.EkranGry1Gracz;
 import BattleCity.EkranNowaGra;
 import mapEditor.newBorder;
 
-public class Poligon extends JPanel {
+public class PoligonTwoPlayers extends JPanel {
 	
 	
 	public String muzykaOnOff;
@@ -36,7 +36,7 @@ public class Poligon extends JPanel {
 	public String filePath;
 	
 	
-	public Poligon(String filePath) throws IOException {
+	public PoligonTwoPlayers(String filePath) throws IOException {
 		setLayout(null);
 		setFocusable(true);
 		setBackground(Color.DARK_GRAY);
@@ -251,7 +251,7 @@ public class Poligon extends JPanel {
 			}
 		}
 		
-		newTank playerOne = new newTank(100,525,redTank);
+		newTank playerOne = new newTank(75,525,redTank);
 		playerOne.setName("tank1");
 		add(playerOne);
 		for (int i=0;i<300;i++) {
@@ -259,6 +259,16 @@ public class Poligon extends JPanel {
 			playerOne.pociski.get(i).setVisible(false);
 			playerOne.pociski.get(i).setName("bulletP1");
 			new Timer().scheduleAtFixedRate(new newBulletMovement(playerOne.pociski.get(i)), 0, 50);
+			}
+		
+		newTank playerTwo = new newTank(675,525,blueTank);
+		playerTwo.setName("tank2");
+		add(playerTwo);
+		for (int i=0;i<300;i++) {
+			add(playerTwo.pociski.get(i));
+			playerTwo.pociski.get(i).setVisible(false);
+			playerTwo.pociski.get(i).setName("bulletP1");
+			new Timer().scheduleAtFixedRate(new newBulletMovement(playerTwo.pociski.get(i)), 0, 50);
 			}
 		
 //		newTank enemyOne = new newTank(300,75,grayTank);
@@ -283,7 +293,9 @@ public class Poligon extends JPanel {
 		
 		
 		newPlayerMovement mOne = new newPlayerMovement(playerOne, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_SPACE);
-		addKeyListener(mOne);		
+		newPlayerMovement mTwo = new newPlayerMovement(playerTwo, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_ENTER);
+		addKeyListener(mOne);
+		addKeyListener(mTwo);
 		
 	}
 	

@@ -16,6 +16,7 @@ public class newTank extends JLabel{
 	public int y;
 	public String tankVersion;
 	public Double tankAngle = -Math.PI/2;
+	public int score;
 	
 	public ArrayList<newBullet> pociski = new ArrayList<newBullet>();
 	{	for (int i=0;i<300;i++) 
@@ -39,11 +40,5 @@ public class newTank extends JLabel{
 		System.out.println("tank hitpoints:3");
 		
 	}
-	
-	public Double getAngle() {
-		return tankAngle;
-	}
-	
-	
-	
+		
 }

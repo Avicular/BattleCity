@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -57,7 +58,12 @@ public class EkranWyboruMapyCustomowejMultiplayer {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new EkranGry2Graczy();
+			try {
+				new EkranGry2Graczy("src/main/resources/customMaps/map1.txt");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			window.setVisible(false);
 			EkranGlowny.buttonSoundEffect();
 		}
@@ -75,7 +81,12 @@ public class EkranWyboruMapyCustomowejMultiplayer {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new EkranGry2Graczy();
+			try {
+				new EkranGry2Graczy("src/main/resources/customMaps/map2.txt");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			window.setVisible(false);
 			EkranGlowny.buttonSoundEffect();
 		}
@@ -93,7 +104,12 @@ public class EkranWyboruMapyCustomowejMultiplayer {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new EkranGry1Gracz();
+			try {
+				new EkranGry1Gracz("src/main/resources/customMaps/map3.txt");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			window.setVisible(false);
 			EkranGlowny.buttonSoundEffect();
 		}
@@ -111,7 +127,12 @@ public class EkranWyboruMapyCustomowejMultiplayer {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new EkranGry1Gracz();
+			try {
+				new EkranGry1Gracz("src/main/resources/customMaps/map4.txt");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			window.setVisible(false);
 			EkranGlowny.buttonSoundEffect();
 		}
@@ -128,7 +149,12 @@ public class EkranWyboruMapyCustomowejMultiplayer {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new EkranGry1Gracz();
+			try {
+				new EkranGry1Gracz("src/main/resources/customMaps/map5.txt");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			window.setVisible(false);
 			EkranGlowny.buttonSoundEffect();
 		}

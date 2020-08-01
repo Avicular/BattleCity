@@ -2,7 +2,6 @@ package tankModel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 public class newPlayerMovement implements KeyListener{
 	
@@ -12,6 +11,7 @@ public class newPlayerMovement implements KeyListener{
 	public int moveRight;
 	public int shoot;
 	public newTank tank;
+	public String objectName = null;
 	
 	public int bullets = 299;
 	
@@ -36,53 +36,53 @@ public class newPlayerMovement implements KeyListener{
 				tank.tankAngle = -Math.PI / 2;
 				tank.repaint();
 			
-//			int counter = 0;
-//			for (int i = 0; i <= 49; i++) {
-//				String objectClass = getComponentAt(tank1.getX() + i, tank1.getY()-1).getClass().getName();
-//				if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
-//					counter++;
-//			}
-//			if (counter > 0)
-//				tank.setLocation(tank.getX(), tank.getY());
-//			else
-				tank.setLocation(tank.getX(), tank.getY() - 2);
-//			distance1++;
-			System.out.println(tank.tankAngle);
-			System.out.println("Ruch o pixel w górê.");
+			int counter = 0;
+			for (int i = 0; i <= 49; i++) {
+				objectName = tank.getParent().getComponentAt(tank.getX()+i, tank.getY()-1).getName();
+				if (tank.getParent().getComponentAt(tank.getX()+i, tank.getY()-1).isVisible()==true)
+				if (objectName == "barrier" || objectName == "field" || objectName == "wall" || objectName == "tank1" || objectName == "tank2" || objectName == "enemy" || objectName == "border")
+					counter++;
+			}
+			if (counter > 0)
+				tank.setLocation(tank.getX(), tank.getY());
+			else
+				tank.setLocation(tank.getX(), tank.getY() - 1);
+//			System.out.println(tank.tankAngle);
 		}
 		if (e.getKeyCode() == moveDown) {
 				tank.tankAngle = Math.PI / 2;
 				tank.repaint();
 			
-//			int counter = 0;
-//			for (int i = 0; i <= 49; i++) {
-//				String objectClass = getComponentAt(tank1.getX() + i, tank1.getY() + 51).getClass().getName();
-//				if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
-//					counter++;
-//			}
-//			if (counter > 0)
-//				tank.setLocation(tank.getX(), tank.getY());
-//			else
-				tank.setLocation(tank.getX(), tank.getY() + 2);
+			int counter = 0;
+			for (int i = 0; i <= 49; i++) {
+				objectName = tank.getParent().getComponentAt(tank.getX() + i, tank.getY() + 50).getName();
+				if (tank.getParent().getComponentAt(tank.getX() + i, tank.getY() + 50).isVisible()==true)
+				if (objectName == "barrier" || objectName == "field" || objectName == "wall" || objectName == "tank1" || objectName == "tank2" || objectName == "enemy" || objectName == "border")
+					counter++;
+			}
+			if (counter > 0)
+				tank.setLocation(tank.getX(), tank.getY());
+			else
+				tank.setLocation(tank.getX(), tank.getY() + 1);
 //			distance1++;
 			System.out.println(tank.tankAngle);
-			System.out.println("Ruch o pixel w dó³.");
 		}
 
 		if (e.getKeyCode() == moveLeft) {
 				tank.tankAngle = Math.PI;
 				tank.repaint();
 
-//			int counter = 0;
-//			for (int i = 0; i < 49; i++) {
-//				String objectClass = getComponentAt(tank1.getX() - 1, tank1.getY() + i).getClass().getName();
-//				if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
-//					counter++;
-//			}
-//			if (counter > 0)
-//				tank.setLocation(tank.getX(), tank.getY());
-//			else
-				tank.setLocation(tank.getX() - 2, tank.getY());
+			int counter = 0;
+			for (int i = 0; i <= 49; i++) {
+				objectName = tank.getParent().getComponentAt(tank.getX() - 1, tank.getY() + i).getName();
+				if (tank.getParent().getComponentAt(tank.getX() - 1, tank.getY() + i).isVisible()==true)
+				if (objectName == "barrier" || objectName == "field" || objectName == "wall" || objectName == "tank1" || objectName == "tank2" || objectName == "enemy" || objectName == "border")
+					counter++;
+			}
+			if (counter > 0)
+				tank.setLocation(tank.getX(), tank.getY());
+			else
+				tank.setLocation(tank.getX() - 1, tank.getY());
 //			distance1++;
 			System.out.println(tank.tankAngle);
 			System.out.println("Ruch o pixel w lewo.");
@@ -92,19 +92,21 @@ public class newPlayerMovement implements KeyListener{
 				tank.tankAngle = (double) 0;
 				tank.repaint();
 
-//			int counter = 0;
-//			for (int i = 0; i <= 49; i++) {
-//				String objectClass = getComponentAt(tank1.getX() + 51, tank1.getY() + i).getClass().getName();
-//				if (objectClass == tankObject || objectClass == enemyObject || objectClass == fieldObject || objectClass == wallObject || objectClass == blockObject || objectClass == barrierObject)
-//					counter++;
-//			}
-//			if (counter > 0)
-//				tank.setLocation(tank.getX(), tank.getY());
-//			else
-				tank.setLocation(tank.getX() + 2, tank.getY());
+			int counter = 0;
+			for (int i = 0; i <= 49; i++) {
+				objectName = tank.getParent().getComponentAt(tank.getX() + 50, tank.getY() + i).getName();
+				if (tank.getParent().getComponentAt(tank.getX() + 50, tank.getY() + i).isVisible()==true)
+				if (objectName == "barrier" || objectName == "field" || objectName == "wall" || objectName == "tank1" || objectName == "tank2" || objectName == "enemy" || objectName == "border")
+					counter++;
+			}
+			if (counter > 0)
+				tank.setLocation(tank.getX(), tank.getY());
+			else
+				tank.setLocation(tank.getX() + 1, tank.getY());
 //			distance1++;
 			System.out.println(tank.tankAngle);
 			System.out.println("Ruch o pixel w prawo.");
+			System.out.println(counter);
 		}
 		
 		if (e.getKeyCode() == shoot) {
@@ -138,6 +140,7 @@ public class newPlayerMovement implements KeyListener{
 				}
 			bullets--;
 			System.out.println(bullets + " bullets left");
+			System.out.println(tank.getParent().getComponentAt(tank.getX(), tank.getY()).getName() +"|"+ tank.getX() + "|" + tank.getY());
 		}
 	}
 

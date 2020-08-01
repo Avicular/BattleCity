@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,17 +16,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import gameContent.onePlayerGame;
-import gameContent.twoPlayersGame;
+import tankModel.Poligon;
 
 public class EkranGry1Gracz {
 	
+	public String filePath;
 	static JFrame window;
 	ImageIcon appIcon = new ImageIcon("src/main/resources/images/12345.png");
-	public EkranGry1Gracz(){
-		
+	public EkranGry1Gracz(String filePath) throws IOException {
+		this.filePath = filePath;
 		window = new JFrame("1 PLAYER");
-		onePlayerGame newOnePlayerGame = new onePlayerGame();
+		Poligon newOnePlayerGame = new Poligon(filePath);
 		window.setIconImage(appIcon.getImage());
 		window.setLayout(new BorderLayout());
 		window.getContentPane().add(newOnePlayerGame);

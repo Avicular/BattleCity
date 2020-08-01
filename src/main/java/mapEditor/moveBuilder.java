@@ -50,8 +50,11 @@ public class moveBuilder implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		
 		if (e.getKeyCode() == moveUp) {
+//			if (builder.getX()<25 && builder.getY()<75) {
+			System.out.println(builder.getX()+","+builder.getY());
 			builder.setLocation(builder.getX(),builder.getY()-50);
 			obstacleIndex = obstacleIndex-1;
+//			}
 		}
 		
 		if (e.getKeyCode() == moveDown) {
@@ -61,12 +64,12 @@ public class moveBuilder implements KeyListener {
 
 		if (e.getKeyCode() == moveLeft) {
 			builder.setLocation(builder.getX()-50,builder.getY());
-			obstacleIndex = obstacleIndex-12;
+			obstacleIndex = obstacleIndex-10;
 		}
 		
 		if (e.getKeyCode() == moveRight) {
 			builder.setLocation(builder.getX()+50,builder.getY());
-			obstacleIndex = obstacleIndex+12;
+			obstacleIndex = obstacleIndex+10;
 		}
 	
 		if (e.getKeyCode() == build) {
