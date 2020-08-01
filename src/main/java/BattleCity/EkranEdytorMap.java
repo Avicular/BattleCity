@@ -1,10 +1,13 @@
 package BattleCity;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -13,82 +16,26 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import mapEditor.Edytor;
+import tankModel.Poligon;
+
 public class EkranEdytorMap {
 
 	JFrame window;
-	Container con;
-	JPanel buttonPanel;
-	JButton buttonWroc, buttonMuzyka;
-	String clickSound, backgroundMusic, muzykaOnOff;
 	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
-	ImageIcon imgicon = new ImageIcon("src/main/resources/images/12345.png");
-	ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
-	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
+	ImageIcon appIcon = new ImageIcon("src/main/resources/images/12345.png");
 	
-	public EkranEdytorMap() {
-		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
-		bg.setOpaque(true);
-		bg.setBounds(0, 0, 800, 600);
-	
-		window = new JFrame("Map Editor");
-		window.setSize(800, 600);
+	public EkranEdytorMap() throws IOException {
+		window = new JFrame("MAP EDITOR");
+		Edytor mapEditor = new Edytor();
+		window.setIconImage(appIcon.getImage());
+		window.setLayout(new BorderLayout());
+		window.getContentPane().add(mapEditor);
+		window.setPreferredSize(new Dimension(806,628));
 		window.setLocation(300, 50);
-		window.setIconImage(imgicon.getImage());
+		window.setVisible(true);
+		window.pack();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
-
-		window.setLayout(null);
-		con = window.getContentPane();
-
-		buttonPanel = new JPanel();
-		buttonPanel.setBounds(300, 400, 200, 100);
-		buttonPanel.setBackground(Color.black);
-		con.add(buttonPanel);
-
-		buttonWroc = new JButton("Back");
-		buttonWroc.setBorderPainted(false);
-		buttonWroc.setBorder(BorderFactory.createEtchedBorder(1));
-		buttonWroc.setForeground(Color.white);
-		buttonWroc.setBackground(Color.black);
-		buttonWroc.setFont(font);
-		buttonWroc.setActionCommand("soundB");
-		buttonPanel.add(buttonWroc);
-		buttonWroc.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				EkranGlowny.buttonSoundEffect();
-				window.setVisible(false);
-				EkranGlowny.window.setVisible(true);
-			}
-		});
-
-		buttonMuzyka = new JButton("Music");
-		buttonMuzyka.setFocusPainted(false);
-		buttonMuzyka.setBorderPainted(false);
-		buttonMuzyka.setActionCommand("musicB");
-		buttonMuzyka.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				EkranGlowny.music();
-				if (EkranGlowny.muzykaOnOff.equals("on")) {
-					buttonMuzyka.setIcon(music);
-				} else if (EkranGlowny.muzykaOnOff.equals("off")) {
-					muzykaOnOff = "off";
-					buttonMuzyka.setIcon(musicOff);
-
-				}
-			}
-
-		});
-		if (EkranGlowny.muzykaOnOff.equals("on")) {
-			buttonMuzyka.setIcon(music);
-		} else
-			buttonMuzyka.setIcon(musicOff);
-		con.add(buttonMuzyka);
-		buttonMuzyka.setBounds(670, 470, 50, 50);
-		window.getContentPane().add(bg);
-		window.setVisible(true);
 	}
 }

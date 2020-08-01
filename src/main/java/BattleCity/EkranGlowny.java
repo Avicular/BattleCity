@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -93,7 +95,12 @@ public class EkranGlowny {
 			public void actionPerformed(ActionEvent e) {
 				buttonSoundEffect();
 				window.setVisible(false);
-				new EkranEdytorMap();
+				try {
+					new EkranEdytorMap();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 		});

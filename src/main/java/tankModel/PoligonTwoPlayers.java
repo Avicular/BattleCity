@@ -42,27 +42,62 @@ public class PoligonTwoPlayers extends JPanel {
 		setBackground(Color.DARK_GRAY);
 		
 		JPanel playerOnePanel = new JPanel();
+		JLabel scoreTextOne = new JLabel();
+		scoreTextOne.setForeground(Color.WHITE);
+		scoreTextOne.setText("P1 SCORE");
+		scoreTextOne.setBounds(30, 0, 100, 25);
 		JLabel scorePlayerOne = new JLabel();
-		scorePlayerOne.setBounds(0, 0, 130, 50);
-		scorePlayerOne.setText("   PLAYER 1   ");
+		scorePlayerOne.setForeground(Color.WHITE);
+		scorePlayerOne.setText("0");
+		scorePlayerOne.setBounds(30, 25, 100, 25);
 		
 		JLabel lifeOnePlayerOne = new JLabel(new ImageIcon("src/main/resources/images/tank_life_icon_red_15x15.png"));
-		lifeOnePlayerOne.setBounds(130, 1, 20, 16);
+		lifeOnePlayerOne.setBounds(125, 1, 20, 16);
 		JLabel lifeTwoPlayerOne = new JLabel(new ImageIcon("src/main/resources/images/tank_life_icon_red_15x15.png"));
-		lifeTwoPlayerOne.setBounds(130, 17, 20, 16);
+		lifeTwoPlayerOne.setBounds(125, 17, 20, 16);
 		JLabel lifeThreePlayerOne = new JLabel(new ImageIcon("src/main/resources/images/tank_life_icon_red_15x15.png"));
-		lifeThreePlayerOne.setBounds(130, 33, 20, 16);
+		lifeThreePlayerOne.setBounds(125, 33, 20, 16);
 
 	
 		playerOnePanel.setLayout(null);
+		playerOnePanel.add(scoreTextOne);
 		playerOnePanel.add(scorePlayerOne);
 		playerOnePanel.add(lifeOnePlayerOne);
 		playerOnePanel.add(lifeTwoPlayerOne);
 		playerOnePanel.add(lifeThreePlayerOne);
 		playerOnePanel.setBounds(0, 0, 150, 50);
-		playerOnePanel.setBackground(Color.getHSBColor(0.4f, 0.4f, 0.5f));
+		playerOnePanel.setBackground(Color.DARK_GRAY);
 		playerOnePanel.setOpaque(true);
 		add(playerOnePanel);
+		
+		JPanel playerTwoPanel = new JPanel();
+		JLabel scoreTextTwo = new JLabel();
+		scoreTextTwo.setForeground(Color.WHITE);
+		scoreTextTwo.setText("P2 SCORE");
+		scoreTextTwo.setBounds(30, 0, 100, 25);
+		JLabel scorePlayerTwo = new JLabel();
+		scorePlayerTwo.setForeground(Color.WHITE);
+		scorePlayerTwo.setText("0");
+		scorePlayerTwo.setBounds(30, 25, 100, 25);
+		
+		JLabel lifeOnePlayerTwo = new JLabel(new ImageIcon("src/main/resources/images/tank_life_icon_red_15x15.png"));
+		lifeOnePlayerTwo.setBounds(125, 1, 20, 16);
+		JLabel lifeTwoPlayerTwo = new JLabel(new ImageIcon("src/main/resources/images/tank_life_icon_red_15x15.png"));
+		lifeTwoPlayerTwo.setBounds(125, 17, 20, 16);
+		JLabel lifeThreePlayerTwo = new JLabel(new ImageIcon("src/main/resources/images/tank_life_icon_red_15x15.png"));
+		lifeThreePlayerTwo.setBounds(125, 33, 20, 16);
+
+	
+		playerTwoPanel.setLayout(null);
+		playerTwoPanel.add(scoreTextTwo);
+		playerTwoPanel.add(scorePlayerTwo);
+		playerTwoPanel.add(lifeOnePlayerTwo);
+		playerTwoPanel.add(lifeTwoPlayerTwo);
+		playerTwoPanel.add(lifeThreePlayerTwo);
+		playerTwoPanel.setBounds(650, 0, 150, 50);
+		playerTwoPanel.setBackground(Color.DARK_GRAY);
+		playerTwoPanel.setOpaque(true);
+		add(playerTwoPanel);
 	
 	JButton backButton = new JButton("Back");
 	backButton.setBounds(325, 0, 150, 50);
@@ -254,43 +289,40 @@ public class PoligonTwoPlayers extends JPanel {
 		newTank playerOne = new newTank(75,525,redTank);
 		playerOne.setName("tank1");
 		add(playerOne);
-		for (int i=0;i<300;i++) {
+		System.out.println("player's tank added");
+		System.out.println("tank hitpoints:3");
+		for (int i=0;i<600;i++) {
 			add(playerOne.pociski.get(i));
 			playerOne.pociski.get(i).setVisible(false);
 			playerOne.pociski.get(i).setName("bulletP1");
-			new Timer().scheduleAtFixedRate(new newBulletMovement(playerOne.pociski.get(i)), 0, 50);
+			new Timer().scheduleAtFixedRate(new newBulletMovement(playerOne.pociski.get(i),playerOne,scorePlayerOne, null, lifeOnePlayerOne, lifeTwoPlayerOne, lifeThreePlayerOne), 0, 50);
 			}
 		
 		newTank playerTwo = new newTank(675,525,blueTank);
 		playerTwo.setName("tank2");
 		add(playerTwo);
-		for (int i=0;i<300;i++) {
+		System.out.println("player's tank added");
+		System.out.println("tank hitpoints:3");
+		for (int i=0;i<600;i++) {
 			add(playerTwo.pociski.get(i));
 			playerTwo.pociski.get(i).setVisible(false);
 			playerTwo.pociski.get(i).setName("bulletP1");
-			new Timer().scheduleAtFixedRate(new newBulletMovement(playerTwo.pociski.get(i)), 0, 50);
+			new Timer().scheduleAtFixedRate(new newBulletMovement(playerTwo.pociski.get(i),playerTwo,scorePlayerTwo, null, lifeOnePlayerTwo, lifeTwoPlayerTwo, lifeThreePlayerTwo), 0, 50);
 			}
 		
-//		newTank enemyOne = new newTank(300,75,grayTank);
-//		enemyOne.setName("enemy");
-//		add(enemyOne);
-//		for (int i=0;i<300;i++) {
-//			add(enemyOne.pociski.get(i));
-//			enemyOne.pociski.get(i).setVisible(false);
-//			enemyOne.pociski.get(i).setName("bulletEnemy");
-//			new Timer().scheduleAtFixedRate(new newBulletMovement(enemyOne.pociski.get(i)), 0, 50);
-//			}
-//		new Timer().scheduleAtFixedRate(new newEnemyMovement(enemyOne), 0, 50);
-		
-//		newTank enemyTwo = new newTank(300,400,grayTank);
-//		add(enemyTwo);
-//		for (int i=0;i<300;i++) {
-//			add(enemyTwo.pociski.get(i));
-//			enemyTwo.pociski.get(i).setVisible(false);
-//			new Timer().scheduleAtFixedRate(new newBulletMovement(enemyTwo.pociski.get(i)), 0, 50);
-//			}
-//		new Timer().scheduleAtFixedRate(new newEnemyMovement(enemyTwo), 0, 50);
-		
+		for (int a=0;a<5;a++) {
+			newTank enemyOne = new newTank(25+a*75, 75, grayTank);
+			enemyOne.setName("enemy");
+			add(enemyOne);
+			for (int i = 0; i < 600; i++) {
+				add(enemyOne.pociski.get(i));
+				enemyOne.pociski.get(i).setVisible(false);
+				enemyOne.pociski.get(i).setName("bulletEnemy");
+				new Timer().scheduleAtFixedRate(new newBulletMovement(enemyOne.pociski.get(i), null, null, playerOne,
+						lifeOnePlayerOne, lifeTwoPlayerOne, lifeThreePlayerOne), 0, 50);
+			}
+			new Timer().scheduleAtFixedRate(new newEnemyMovement(enemyOne), 0, 50);
+		}		
 		
 		newPlayerMovement mOne = new newPlayerMovement(playerOne, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_SPACE);
 		newPlayerMovement mTwo = new newPlayerMovement(playerTwo, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_ENTER);

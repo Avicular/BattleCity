@@ -17,9 +17,10 @@ public class newTank extends JLabel{
 	public String tankVersion;
 	public Double tankAngle = -Math.PI/2;
 	public int score;
+	public int hitpoints = 3;
 	
 	public ArrayList<newBullet> pociski = new ArrayList<newBullet>();
-	{	for (int i=0;i<300;i++) 
+	{	for (int i=0;i<600;i++) 
 		pociski.add(new newBullet(100,100));
 	}
 	
@@ -36,8 +37,7 @@ public class newTank extends JLabel{
 			}
 		});
 
-		System.out.println("player's tank added");
-		System.out.println("tank hitpoints:3");
+		
 		
 	}
 		

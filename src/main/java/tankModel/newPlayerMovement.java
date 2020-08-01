@@ -13,7 +13,7 @@ public class newPlayerMovement implements KeyListener{
 	public newTank tank;
 	public String objectName = null;
 	
-	public int bullets = 299;
+	public int bullets = 599;
 	
 	public newPlayerMovement(newTank tank, int moveUp, int moveDown, int moveLeft, int moveRight, int shoot) {
 		this.tank = tank;
@@ -139,8 +139,6 @@ public class newPlayerMovement implements KeyListener{
 				System.out.println("Bullet is shot to the right");
 				}
 			bullets--;
-			System.out.println(bullets + " bullets left");
-			System.out.println(tank.getParent().getComponentAt(tank.getX(), tank.getY()).getName() +"|"+ tank.getX() + "|" + tank.getY());
 		}
 	}
 

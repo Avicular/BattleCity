@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 	JFrame oknoEdytora = new JFrame();
 	
-	Edytor edytor = new Edytor("src/main/resources/maps/map3.txt");
+	Edytor edytor = new Edytor();
 	oknoEdytora.setLayout(new BorderLayout());	
 	oknoEdytora.getContentPane().add(edytor);
 	oknoEdytora.setTitle("Okno Gry");		
