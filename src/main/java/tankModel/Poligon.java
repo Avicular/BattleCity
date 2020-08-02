@@ -257,28 +257,28 @@ public class Poligon extends JPanel {
 			}
 		}
 		
-		newTank playerOne = new newTank(100,525,redTank);
+		newTank playerOne = new newTank(75,525,redTank);
 		playerOne.setName("tank1");
 		add(playerOne);
 		System.out.println("player's tank added");
 		System.out.println("tank hitpoints:3");
-		for (int i=0;i<300;i++) {
+		for (int i=0;i<400;i++) {
 			add(playerOne.pociski.get(i));
 			playerOne.pociski.get(i).setVisible(false);
 			playerOne.pociski.get(i).setName("bulletP1");
-			new Timer().scheduleAtFixedRate(new newBulletMovement(playerOne.pociski.get(i),playerOne,scorePlayerOne, null, null, null, null), 0, 50);
+			new Timer().scheduleAtFixedRate(new newBulletMovement(playerOne.pociski.get(i),playerOne,scorePlayerOne, null, null, null, null, null, null, null), 0, 50);
 			}
 		
 		for (int a=0;a<5;a++) {
-			newTank enemyOne = new newTank(25+a*75, 75, grayTank);
+			newTank enemyOne = new newTank(75+a*150, 75, grayTank);
 			enemyOne.setName("enemy");
 			add(enemyOne);
-			for (int i = 0; i < 600; i++) {
+			for (int i = 0; i < 400; i++) {
 				add(enemyOne.pociski.get(i));
 				enemyOne.pociski.get(i).setVisible(false);
 				enemyOne.pociski.get(i).setName("bulletEnemy");
 				new Timer().scheduleAtFixedRate(new newBulletMovement(enemyOne.pociski.get(i), null, null, playerOne,
-						lifeOnePlayerOne, lifeTwoPlayerOne, lifeThreePlayerOne), 0, 50);
+						lifeOnePlayerOne, lifeTwoPlayerOne, lifeThreePlayerOne, null, null, null), 0, 50);
 			}
 			new Timer().scheduleAtFixedRate(new newEnemyMovement(enemyOne), 0, 50);
 		}

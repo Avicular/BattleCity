@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import BattleCity.EkranEdytorMap;
 import BattleCity.EkranGlowny;
 import BattleCity.EkranGry1Gracz;
 import BattleCity.EkranNowaGra;
@@ -95,8 +96,8 @@ public class Edytor extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				EkranGlowny.buttonSoundEffect();
-				EkranGry1Gracz.setVisible();
-				new EkranNowaGra();
+				EkranEdytorMap.setVisible();
+				new EkranGlowny();
 			}
 		});
 		add(backButton);

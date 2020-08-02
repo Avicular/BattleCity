@@ -21,7 +21,7 @@ import tankModel.Poligon;
 
 public class EkranEdytorMap {
 
-	JFrame window;
+	static JFrame window;
 	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
 	ImageIcon appIcon = new ImageIcon("src/main/resources/images/12345.png");
 	
@@ -37,5 +37,9 @@ public class EkranEdytorMap {
 		window.pack();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
+	}
+	
+	public static void setVisible () {
+		window.setVisible(false);
 	}
 }

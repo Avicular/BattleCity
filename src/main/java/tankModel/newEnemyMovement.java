@@ -6,7 +6,7 @@ import java.util.TimerTask;
 public class newEnemyMovement extends TimerTask {
 
 	public newTank tank;
-	public int bullets = 599;
+	public int bullets = 399;
 		
 	public newEnemyMovement(newTank tank) {
 		this.tank = tank;

@@ -21,8 +21,11 @@ public class newBulletMovement extends TimerTask {
 	public JLabel lifeOne;
 	public JLabel lifeTwo;
 	public JLabel lifeThree;
+	public JLabel P2lifeOne;
+	public JLabel P2lifeTwo;
+	public JLabel P2lifeThree;
 	
-	public newBulletMovement(newBullet bullet, newTank tank, JLabel score, newTank target, JLabel lifeOne, JLabel lifeTwo, JLabel lifeThree) {
+	public newBulletMovement(newBullet bullet, newTank tank, JLabel score, newTank target, JLabel lifeOne, JLabel lifeTwo, JLabel lifeThree, JLabel P2lifeOne, JLabel P2lifeTwo, JLabel P2lifeThree) {
 		this.bullet = bullet;
 		this.tank = tank;
 		this.score = score;
@@ -30,6 +33,9 @@ public class newBulletMovement extends TimerTask {
 		this.lifeOne = lifeOne;
 		this.lifeTwo = lifeTwo;
 		this.lifeThree = lifeThree;
+		this.P2lifeOne = P2lifeOne;
+		this.P2lifeTwo = P2lifeTwo;
+		this.P2lifeThree = P2lifeThree;
 	}
 	
 	
@@ -72,6 +78,19 @@ public class newBulletMovement extends TimerTask {
 							lifeTwo.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
 						else if (target.hitpoints == 0) {
 							lifeOne.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+							bullet.getParent().getComponentAt(bullet.getX() + 7, bullet.getY() - 1).setVisible(false);
+							System.out.println("GAME OVER");
+						}
+					}
+					else if (objectName == "tank2" && (bulletName == "bulletEnemy")) {
+						target.hitpoints--;
+						System.out.println("tank hitpoints:" + target.hitpoints);
+						if (target.hitpoints == 2)
+							P2lifeThree.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+						else if (target.hitpoints == 1)
+							P2lifeTwo.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+						else if (target.hitpoints == 0) {
+							P2lifeOne.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
 							bullet.getParent().getComponentAt(bullet.getX() + 7, bullet.getY() - 1).setVisible(false);
 							System.out.println("GAME OVER");
 						}
@@ -119,6 +138,19 @@ public class newBulletMovement extends TimerTask {
 							System.out.println("GAME OVER");
 						}
 					}
+					else if (objectName == "tank2" && (bulletName == "bulletEnemy")) {
+						target.hitpoints--;
+						System.out.println("tank hitpoints:" + target.hitpoints);
+						if (target.hitpoints == 2)
+							P2lifeThree.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+						else if (target.hitpoints == 1)
+							P2lifeTwo.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+						else if (target.hitpoints == 0) {
+							P2lifeOne.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+							bullet.getParent().getComponentAt(bullet.getX() + 21, bullet.getY() + 7).setVisible(false);
+							System.out.println("GAME OVER");
+						}
+					}
 				}
 				else	
 				this.bullet.setLocation(this.bullet.getX()+4, this.bullet.getY());
@@ -161,6 +193,19 @@ public class newBulletMovement extends TimerTask {
 							System.out.println("GAME OVER");
 						}
 					}
+					else if (objectName == "tank2" && (bulletName == "bulletEnemy")) {
+						target.hitpoints--;
+						System.out.println("tank hitpoints:" + target.hitpoints);
+						if (target.hitpoints == 2)
+							P2lifeThree.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+						else if (target.hitpoints == 1)
+							P2lifeTwo.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+						else if (target.hitpoints == 0) {
+							bullet.getParent().getComponentAt(bullet.getX() + 8, bullet.getY() + 21).setVisible(false);
+							P2lifeOne.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+							System.out.println("GAME OVER");
+						}
+					}
 				}
 				else	
 				this.bullet.setLocation(this.bullet.getX(), this.bullet.getY()+4);
@@ -195,16 +240,31 @@ public class newBulletMovement extends TimerTask {
 						System.out.println("tank hitpoints:" + target.hitpoints);
 						if (target.hitpoints == 2) {
 							lifeThree.removeAll();
-							lifeThree.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+							P2lifeThree.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
 						}
 						else if (target.hitpoints == 1) {
 							lifeTwo.removeAll();
-							lifeTwo.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+							P2lifeTwo.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
 						}
 						else if (target.hitpoints == 0) {
 							bullet.getParent().getComponentAt(bullet.getX() -1, bullet.getY() + 8).setVisible(false);
 							lifeOne.removeAll();
-							lifeOne.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+							P2lifeOne.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+							System.out.println("GAME OVER");
+						}
+					}
+					else if (objectName == "tank2" && (bulletName == "bulletEnemy")) {
+						target.hitpoints--;
+						System.out.println("tank hitpoints:" + target.hitpoints);
+						if (target.hitpoints == 2) {
+							P2lifeThree.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+						}
+						else if (target.hitpoints == 1) {
+							P2lifeTwo.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
+						}
+						else if (target.hitpoints == 0) {
+							bullet.getParent().getComponentAt(bullet.getX() -1, bullet.getY() + 8).setVisible(false);
+							P2lifeOne.setIcon(new ImageIcon("src/main/resources/images/tank_life_icon_red_empty_15x15.png"));
 							System.out.println("GAME OVER");
 						}
 					}

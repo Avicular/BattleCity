@@ -13,7 +13,7 @@ public class newPlayerMovement implements KeyListener{
 	public newTank tank;
 	public String objectName = null;
 	
-	public int bullets = 599;
+	public int bullets = 399;
 	
 	public newPlayerMovement(newTank tank, int moveUp, int moveDown, int moveLeft, int moveRight, int shoot) {
 		this.tank = tank;
