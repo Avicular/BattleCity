@@ -53,8 +53,8 @@ public class Edytor extends JPanel {
 		
 		String[] maps = {"map1","map2","map3","map4","map5"};
 		String mapName = (String) JOptionPane.showInputDialog(null,"Select map slot to edit.","Select", JOptionPane.INFORMATION_MESSAGE,null,maps,maps[0]);
-//		String mapFile = "src/main/resources/maps/" + mapName + ".txt";
-		String mapFile = "src/main/resources/customMaps/" + mapName + ".txt";
+		String mapFile = "src/main/resources/maps/" + mapName + ".txt";
+//		String mapFile = "src/main/resources/customMaps/" + mapName + ".txt";
 		
 		moveBuilder move = new moveBuilder(builder, set, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_SPACE, KeyEvent.VK_ENTER, new PrintWriter(mapFile)); 
 		addKeyListener(move);
