@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 
 import BattleCity.EkranGlowny;
 import BattleCity.EkranGry1Gracz;
+import BattleCity.EkranGry2Graczy;
 import BattleCity.EkranNowaGra;
 import mapEditor.newBorder;
 
@@ -112,7 +113,7 @@ public class PoligonTwoPlayers extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			EkranGlowny.buttonSoundEffect();
-			EkranGry1Gracz.setVisible();
+			EkranGry2Graczy.setVisible();
 			new EkranNowaGra();
 		}
 	});

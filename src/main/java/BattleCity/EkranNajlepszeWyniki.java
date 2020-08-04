@@ -3,8 +3,11 @@ package BattleCity;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,12 +24,14 @@ import javax.swing.JTextField;
 
 public class EkranNajlepszeWyniki {
 
-	JFrame window;
+	static JFrame window;
 	Container con;
 	JLabel highscore;
 	JPanel buttonPanel, Panel;
-	JButton buttonWroc, buttonMuzyka;
-	String clickSound, backgroundMusic, muzykaOnOff;
+	JButton buttonWroc;
+	static JButton buttonMuzyka;
+	String clickSound, backgroundMusic;
+	static String muzykaOnOff;
 	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
 	ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
@@ -37,22 +42,6 @@ public class EkranNajlepszeWyniki {
 		bg.setOpaque(true);
 		bg.setBounds(0, 0, 800, 600);
 		ImageIcon imgicon = new ImageIcon("src/main/resources/images/12345.png");
-
-		ArrayList<Score> scores = new ArrayList<>();
-		scores.add(new Score("Piotr", 1));
-		scores.add(new Score("Lukasz", 50));
-		scores.add(new Score("Adam", 200));
-		scores.add(new Score("Daniel", 300));
-		scores.add(new Score("Marta", 1000));
-		scores.add(new Score("Tomek", 550));
-		scores.add(new Score("player2", 3000));
-		scores.add(new Score("player3", 12000));
-		scores.add(new Score("player4", 5530));
-		scores.add(new Score("player5", 3100));
-		scores.add(new Score("player6", 11000));
-		scores.add(new Score("player7", 520));
-
-		Collections.sort(scores, new ScoreComparator());
 
 		window = new JFrame("Highscores");
 		window.setSize(800, 600);
@@ -123,25 +112,68 @@ public class EkranNajlepszeWyniki {
 			buttonMuzyka.setIcon(musicOff);
 		con.add(buttonMuzyka);
 
+		ArrayList<Score> scores = new ArrayList<>();
+		scores.add(new Score("Piotr", 1));
+		scores.add(new Score("Lukasz", 50));
+		scores.add(new Score("Adam", 200));
+		scores.add(new Score("Daniel", 300));
+		scores.add(new Score("Marta", 1000));
+		scores.add(new Score("Tomek", 550));
+		scores.add(new Score("player2", 3000));
+		scores.add(new Score("player3", 12000));
+		scores.add(new Score("player4", 5530));
+		scores.add(new Score("player5", 3100));
+		scores.add(new Score("player6", 11000));
+		scores.add(new Score("player7", 520));
+
+		Collections.sort(scores, new ScoreComparator());
+		
 		ArrayList<String> list = new ArrayList<>();
 		scores.forEach((xx) -> list.add(String.valueOf(xx)));
-		
+
 		JLabel[] pola;
 		pola = new JLabel[10];
 
 		for (int i = 0; i < 10; i++) {
 			System.out.println(list.get(i));
-			
+
 			pola[i] = new JLabel(list.get(i));
 			pola[i].setBounds(150, 100 + (i * 35), 500, 30);
 			pola[i].setForeground(Color.WHITE);
 			pola[i].setFont(font);
 			con.add(pola[i]);
 		}
-		
+
 //		window.getContentPane().add(bg);
 		window.setVisible(true);
+		musicOnOffWhenMinimizeMaximazeWindow();
 
+	}
+
+	public static void musicOnOffWhenMinimizeMaximazeWindow() {
+		window.addWindowStateListener(new WindowAdapter() {
+			@Override
+			public void windowStateChanged(WindowEvent we) {
+				String backgroundMusic = "src/main/resources/sound/muzykawtle.wav";
+				ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
+				ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
+				if (we.getNewState() == Frame.ICONIFIED) {
+					EkranGlowny.mu.stop();
+					EkranGlowny.muzykaOnOff = "off";
+					EkranGlowny.buttonMuzyka.setIcon(musicOff);
+					muzykaOnOff = "off";
+					buttonMuzyka.setIcon(musicOff);
+				} else if (we.getNewState() != Frame.ICONIFIED) {
+					EkranGlowny.mu.setFile(backgroundMusic);
+					EkranGlowny.mu.play();
+					EkranGlowny.mu.loop();
+					EkranGlowny.muzykaOnOff = "on";
+					EkranGlowny.buttonMuzyka.setIcon(music);
+					muzykaOnOff = "on";
+					buttonMuzyka.setIcon(music);
+				}
+			}
+		});
 	}
 
 }

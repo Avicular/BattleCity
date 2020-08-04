@@ -35,7 +35,7 @@ public class EkranGlowny {
 	public static String muzykaOnOff;
 	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
 	static SoundEffect se = new SoundEffect();
-	static Music mu = new Music();
+	public static Music mu = new Music();
 	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
 
 	public EkranGlowny() {

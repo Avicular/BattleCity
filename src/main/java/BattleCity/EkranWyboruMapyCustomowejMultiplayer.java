@@ -3,8 +3,11 @@ package BattleCity;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
@@ -16,11 +19,13 @@ import javax.swing.JPanel;
 
 public class EkranWyboruMapyCustomowejMultiplayer {
 	
-	JFrame window;
+	static JFrame window;
 	Container con;
 	JPanel buttonPanel;
-	JButton buttonMap1, buttonMap2, buttonMap3, buttonMap4, buttonMap5, buttonWroc, buttonMuzyka;
-	String clickSound, backgroundMusic, muzykaOnOff;
+	JButton buttonMap1, buttonMap2, buttonMap3, buttonMap4, buttonMap5, buttonWroc;
+	static JButton buttonMuzyka;
+	String clickSound, backgroundMusic;
+	static String muzykaOnOff;
 	Font font = new Font("Visitor TT1 BRK", Font.BOLD, 28);
 	public EkranWyboruMapyCustomowejMultiplayer(){
 		JLabel bg = new JLabel(new ImageIcon("src/main/resources/images/Battle_City.jpg"));
@@ -128,7 +133,7 @@ public class EkranWyboruMapyCustomowejMultiplayer {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
-				new EkranGry1Gracz("src/main/resources/customMaps/map4.txt");
+				new EkranGry2Graczy("src/main/resources/customMaps/map4.txt");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -210,5 +215,33 @@ public class EkranWyboruMapyCustomowejMultiplayer {
 	window.getContentPane().add(bg);
 	window.setVisible(true);
 	
-}
+	musicOnOffWhenMinimizeMaximazeWindow();
+
+	}
+
+	public static void musicOnOffWhenMinimizeMaximazeWindow() {
+		window.addWindowStateListener(new WindowAdapter() {
+			@Override
+			public void windowStateChanged(WindowEvent we) {
+				String backgroundMusic = "src/main/resources/sound/muzykawtle.wav";
+				ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
+				ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
+				if (we.getNewState() == Frame.ICONIFIED) {
+					EkranGlowny.mu.stop();
+					EkranGlowny.muzykaOnOff = "off";
+					EkranGlowny.buttonMuzyka.setIcon(musicOff);
+					muzykaOnOff = "off";
+					buttonMuzyka.setIcon(musicOff);
+				} else if (we.getNewState() != Frame.ICONIFIED) {
+					EkranGlowny.mu.setFile(backgroundMusic);
+					EkranGlowny.mu.play();
+					EkranGlowny.mu.loop();
+					EkranGlowny.muzykaOnOff = "on";
+					EkranGlowny.buttonMuzyka.setIcon(music);
+					muzykaOnOff = "on";
+					buttonMuzyka.setIcon(music);
+				}
+			}
+		});
+	}
 }

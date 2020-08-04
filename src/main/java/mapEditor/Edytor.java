@@ -97,7 +97,7 @@ public class Edytor extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				EkranGlowny.buttonSoundEffect();
 				EkranEdytorMap.setVisible();
-				new EkranGlowny();
+				EkranGlowny.window.setVisible(true);
 			}
 		});
 		add(backButton);

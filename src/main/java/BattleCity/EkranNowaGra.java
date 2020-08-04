@@ -3,8 +3,11 @@ package BattleCity;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -18,8 +21,11 @@ public class EkranNowaGra {
 	public static JFrame window;
 	Container con;
 	JPanel buttonPanel;
-	JButton buttonMapyStandardowe, buttonMapyCustomowe, buttonWroc, buttonMuzyka;
-	String clickSound, backgroundMusic, muzykaOnOff;
+	JButton buttonMapyStandardowe, buttonMapyCustomowe, buttonWroc;
+	static JButton buttonMuzyka;
+	String clickSound;
+	static String backgroundMusic;
+	static String muzykaOnOff;
 	ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
 	ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
 	ImageIcon imgicon = new ImageIcon("src/main/resources/images/12345.png");
@@ -130,8 +136,34 @@ public class EkranNowaGra {
 		con.add(buttonMuzyka);
 		window.getContentPane().add(bg);
 		window.setVisible(true);
-		
+		musicOnOffWhenMinimizeMaximazeWindow();
 		
 		
 		}
+	public static void musicOnOffWhenMinimizeMaximazeWindow() {
+		window.addWindowStateListener(new WindowAdapter() {
+			@Override
+			public void windowStateChanged(WindowEvent we) {
+				backgroundMusic = "src/main/resources/sound/muzykawtle.wav";
+				ImageIcon music = new ImageIcon("src/main/resources/images/music.jpg");
+				ImageIcon musicOff = new ImageIcon("src/main/resources/images/musicOff.jpg");
+				if (we.getNewState() == Frame.ICONIFIED) {
+					EkranGlowny.mu.stop();
+					EkranGlowny.muzykaOnOff = "off";
+					EkranGlowny.buttonMuzyka.setIcon(musicOff);
+					muzykaOnOff = "off";
+					buttonMuzyka.setIcon(musicOff);
+				} else if (we.getNewState() != Frame.ICONIFIED) {
+					EkranGlowny.mu.setFile(backgroundMusic);
+					EkranGlowny.mu.play();
+					EkranGlowny.mu.loop();
+					EkranGlowny.muzykaOnOff = "on";
+					EkranGlowny.buttonMuzyka.setIcon(music);
+					muzykaOnOff = "on";
+					buttonMuzyka.setIcon(music);
+				}
+			}
+		});
+	}
+	
 	}
